@@ -1,0 +1,16 @@
+export default {
+  OK: 200,
+  Created: 201,
+  Accepted: 202,
+  NonAuthoritativeInfo: 203,
+  NoContent: 204,
+  ResetContent: 205,
+  PartialContent: 206,
+  IMUsed: 207,
+  MultiStatus: 208,
+  AlreadyReported: 209,
+  SeeOther: 303,
+  NotModified: 304,
+  TemporaryRedirect: 307,
+  PermanentRedirect: 308,
+};
