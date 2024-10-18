@@ -2,7 +2,7 @@ import FileSystem from "fs";
 
 const hasAllAttributes = (object, wantedAttributes) =>
   wantedAttributes.every(
-    (attribute) => attribute in object && object.attribute != ""
+    (attribute) => attribute in object && object[attribute].length > 0
   );
 
 class CustomError extends Error {
