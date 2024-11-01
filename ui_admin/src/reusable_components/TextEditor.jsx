@@ -2,7 +2,7 @@ import { SolidQuill } from "solid-quill";
 import "quill/dist/quill.snow.css";
 
 function TextEditor(params) {
-  const { onInput, ...rest } = params;
+  const { onInput, defaultValue, ...rest } = params;
 
   let quillRef;
 
@@ -13,6 +13,7 @@ function TextEditor(params) {
       class="quill"
       ref={quillRef}
       onTextChange={() => onInput(getQuillHtml())}
+      innerHTML={defaultValue}
       modules={{
         toolbar: [
           ["bold", "italic", "underline", "strike"],

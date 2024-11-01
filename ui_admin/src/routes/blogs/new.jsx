@@ -1,9 +1,9 @@
 import { createStore } from "solid-js/store";
-import BlogService from "../services/blog";
+import BlogService from "../../services/blog";
 
-import TextEditor from "../reusable_components/TextEditor";
-import Notification from "../reusable_components/Notification";
-import useNotification from "../reusable_components/Notification/useNotification.js";
+import TextEditor from "../../reusable_components/TextEditor";
+import Notification from "../../reusable_components/Notification";
+import useNotification from "../../reusable_components/Notification/useNotification.js";
 
 function CreateBlog(params) {
   const [blog, setBlog] = createStore({

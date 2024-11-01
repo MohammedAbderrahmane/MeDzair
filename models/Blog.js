@@ -76,7 +76,7 @@ Blog.update = (id, blog) => {
   if (!hasAllAttributes(blog, ["date", "title", "content"]))
     throw new CustomError("Bad Request");
 
-  blog.lastUpdateDate = blog.lastUpdateDate || getCurrentDay();
+  blog.updateDate = blog.updateDate || getCurrentDay();
   const blogJson = JSON.stringify({ ...blog, id }, null, 2);
 
   FileSystem.writeFileSync(

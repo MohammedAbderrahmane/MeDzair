@@ -38,3 +38,8 @@
 .success {
   color: green;
 }
+
+nav > ul > li {
+  display: inline;
+  padding-inline: 20px;
+}
