@@ -1,0 +1,27 @@
+.blog-content {
+  text-align: start;
+}
+
+.blog-content h2 {
+  font-size: 2.5rem;
+  /* margin-left: 10px; */
+  margin-block: 5px;
+}
+.blog-content h3 {
+  font-size: 2rem;
+  margin-block: 5px;
+  margin-left: 30px;
+}
+
+.blog-content p,
+ul,
+ol {
+  margin-block: 5px;
+  font-size: 1.1rem;
+  margin-left: 50px;
+}
+
+.blog-content ul,
+ol {
+  list-style-type: disc;
+}

@@ -7,8 +7,13 @@ function Header({ navItems }) {
   ];
 
   return (
-    <header>
-      <h1>Welcome to my website</h1>
+    <header style={{ border: "solid" }}>
+      <div>
+        <h1 className="tiny5-regular">
+          <a href="/">~/medzair.com</a>
+        </h1>
+        <span>css is comming by the way</span>
+      </div>
       <nav>
         <ul>
           <For each={links}>

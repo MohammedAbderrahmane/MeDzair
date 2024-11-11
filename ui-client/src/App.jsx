@@ -1,7 +1,7 @@
 import { Router, Route } from "@solidjs/router";
 
 import Blog from "./routes/blogs/[id]";
-import Main from "./routes/";
+import Main from "./routes/main";
 import About from "./routes/about";
 
 import Header from "./components/Header";
@@ -13,12 +13,14 @@ function App() {
   return (
     <>
       <Header />
-      <Router>
-        <Route path="/" component={Main} />
-        <Route path="/about" component={About} />
-        <Route path="/blogs/:id" component={Blog} />
-      </Router>
-      <Footer/>
+      <div className="main">
+        <Router>
+          <Route path="/" component={Main} />
+          <Route path="/about" component={About} />
+          <Route path="/blogs/:id" component={Blog} />
+        </Router>
+      </div>
+      <Footer />
     </>
   );
 }
