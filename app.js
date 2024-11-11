@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(loggerMiddleware);
 
+app.use(express.static("dist"));
 app.use("/api/blogs", blogRouter);
 // app.use("/api");
 // app.use("/api");

@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js",
+    "start": "./start-script.sh",
     "test": "BLOGS_FOLDER=/home/medzair/www node --test"
   },
   "author": "",
