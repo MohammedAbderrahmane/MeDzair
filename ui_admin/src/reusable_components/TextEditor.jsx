@@ -1,3 +1,4 @@
+import Quill from "quill";
 import { SolidQuill } from "solid-quill";
 import "quill/dist/quill.snow.css";
 
@@ -8,25 +9,25 @@ function TextEditor(params) {
 
   const getQuillHtml = () => quillRef.root.innerHTML;
 
+  const quillConfig = {
+    toolbar: {
+      container: [
+        ["bold", "italic", "underline", "strike"],
+        [{ align: [] }],
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ indent: "-1" }, { indent: "+1" }],
+        [{ header: [2, 3, false] }],
+        ["link", "image", "code-block"], // need fix / replacement
+      ],
+    },
+  };
+
   return (
     <SolidQuill
-      class="quill"
       ref={quillRef}
       onTextChange={() => onInput(getQuillHtml())}
       innerHTML={defaultValue}
-      modules={{
-        toolbar: [
-          ["bold", "italic", "underline", "strike"],
-          [{ align: [] }],
-          [{ list: "ordered" }, { list: "bullet" }],
-          [{ indent: "-1" }, { indent: "+1" }],
-          [{ size: ["small", false, "large"] }],
-          [{ header: [2, 3, 4, 5, 6, false] }],
-          [("link", "image")],
-          [{ color: [] }, { background: [] }],
-          ["clean"],
-        ],
-      }}
+      modules={quillConfig}
       theme="snow"
       {...rest}
     />
