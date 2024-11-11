@@ -1,15 +1,17 @@
+import "./content-style.css";
+
 function Blog({ blog }) {
   return (
-    <div>
-      <h1>
-        ---- {blog.title} - {blog.date} ----
-      </h1>
-      <div innerHTML={blog.content} />
-      <h1>
-        ---- {blog.additionTitle}- {blog.updateDate} ----
-      </h1>
+    <div className="blog-page">
+      <h1>{blog.title}</h1>
+      <div className="blog-content" innerHTML={blog.content} />
 
-      <div innerHTML={blog.additionContent} />
+      {blog.additionContent && (
+        <>
+          <h1>{blog.additionTitle}</h1>
+          <div className="blog-content" innerHTML={blog.additionContent} />
+        </>
+      )}
     </div>
   );
 }

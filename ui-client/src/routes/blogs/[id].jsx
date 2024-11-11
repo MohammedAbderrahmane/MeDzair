@@ -12,12 +12,12 @@ function Blog(params) {
   const [blog] = createResource(async () => await BlogService.getOne(id));
 
   return (
-    <div>
+    <>
       <Resource
         resource={blog}
         RenderComponent={(resource) => <BlogContent blog={resource} />}
       />
-    </div>
+    </>
   );
 }
 

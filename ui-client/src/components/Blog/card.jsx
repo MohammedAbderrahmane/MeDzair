@@ -1,12 +1,9 @@
-import BlogService from "../../services/blog.js";
-
 function BlogCard({ blog }) {
   return (
-    <div>
-      <a href={`/blogs/${blog.id}`}>{blog.title} </a>
-      <span> | </span>
+    <li className="blog-card">
+      <a className="break-line" href={`/blogs/${blog.id}`}>{blog.title} </a>
       <span>{blog.date}</span>
-    </div>
+    </li>
   );
 }
 
