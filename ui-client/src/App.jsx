@@ -1,6 +1,6 @@
 import { Router, Route } from "@solidjs/router";
 
-import Blog from "./routes/blogs/[id]";
+import Blog from "./routes/blog";
 import Main from "./routes/main";
 import About from "./routes/about";
 

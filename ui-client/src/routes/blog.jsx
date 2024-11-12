@@ -1,10 +1,10 @@
 import { createResource } from "solid-js";
 import { useParams } from "@solidjs/router";
 
-import Resource from "../../reusable_components/Resource";
-import BlogContent from "../../components/Blog";
+import Resource from "../reusable_components/Resource";
+import BlogContent from "../components/Blog";
 
-import BlogService from "../../services/blog";
+import BlogService from "../services/blog";
 
 function Blog(params) {
   const { id } = useParams();
