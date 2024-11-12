@@ -6,6 +6,7 @@ import About from "./routes/about";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ErrorDiv from "./reusable_components/ErrorDiv";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" component={Main} />
           <Route path="/about" component={About} />
           <Route path="/blogs/:id" component={Blog} />
+          <Route path="*" component={ErrorDiv} />
         </Router>
       </div>
       <Footer />

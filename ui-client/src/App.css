@@ -80,6 +80,22 @@ footer {
 
 /* ---- */
 
+.error-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+}
+
+.error-div > h1:first-child {
+  font-family: "Tiny5", sans-serif;
+  font-size: 5rem;
+  display: inline;
+  margin-right: 20px;
+}
+
+/* ---- */
+
 .break-line:after {
   content: "\a";
   white-space: pre;

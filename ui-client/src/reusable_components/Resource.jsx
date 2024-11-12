@@ -1,4 +1,5 @@
 import { Match, Switch } from "solid-js";
+import ErrorDiv from "./ErrorDiv";
 
 function Resource({
   resource,
@@ -12,7 +13,10 @@ function Resource({
         <p>Loading...</p>
       </Match>
       <Match when={resource.error}>
-        <p>Error: {resource.error + ""}</p>
+        <ErrorDiv
+          errorType={resource.error.status}
+          errorMessage={resource.error.message}
+        />
       </Match>
       <Match when={resource()}>
         {(resource) => RenderComponent(resource())}

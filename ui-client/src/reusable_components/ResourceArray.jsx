@@ -1,4 +1,5 @@
 import { Match, Switch } from "solid-js";
+import ErrorDiv from "./ErrorDiv";
 
 function ResourceArray({
   resources,
@@ -12,7 +13,10 @@ function ResourceArray({
         <p>Loading...</p>
       </Match>
       <Match when={resources.error}>
-        <p>Error: {resources.error + ""}</p>
+        <ErrorDiv
+          errorType={resources.error.status}
+          errorMessage={resources.error.message}
+        />
       </Match>
       <Match when={resources()}>
         {!!resources().length ? (

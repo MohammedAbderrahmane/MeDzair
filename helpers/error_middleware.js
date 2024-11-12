@@ -11,7 +11,7 @@ const specificErrorHandler = (error, request, response, next) => {
     case "Blog Not Found":
       return response
         .status(ErrorTypes.NOT_FOUND)
-        .json({ error: "blog not found" });
+        .json({ error: "The blog was not found" });
   }
   next(error);
 };

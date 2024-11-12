@@ -7,7 +7,9 @@ const getAll = async () => {
     const response = await axios.get(baseUrl);
     return response.data;
   } catch (error) {
-    throw new Error(error.response.data.error);
+    const newError = new Error(error.response?.data?.error || "Network error");
+    newError.status = error.response.status;
+    throw newError;
   }
 };
 
@@ -16,7 +18,9 @@ const getOne = async (id) => {
     const response = await axios.get(`${baseUrl}/${id}`);
     return response.data;
   } catch (error) {
-    throw new Error(error.response.data.error);
+    const newError = new Error(error.response?.data?.error || "Network error");
+    newError.status = error.response.status;
+    throw newError;
   }
 };
 
