@@ -6,7 +6,6 @@ import BlogCard from "../components/Blog/card";
 import BlogService from "../services/blog";
 
 function Main(params) {
-  const email = "louriachiabderrahman13@gmail.com";
   const socialMedia = [
     { name: "Github", href: "https://github.com/MohammedAbderrahmane" },
     {
@@ -31,9 +30,7 @@ function Main(params) {
             I will also give some advices that i will not be held responseble on
             😂
           </p>
-          <div className="email-link">
-            You can contact me on : <a href={`mailto:${email}`}>{email}</a>
-          </div>
+         
         </div>
 
         <ul>
