@@ -1,6 +1,6 @@
 #!/bin/sh
 
-npm install
+
 if ! [ -d "dist" ]; then
     cd ui-client
     if ! [ -d "dist" ]; then
@@ -11,5 +11,3 @@ if ! [ -d "dist" ]; then
     rm -r dist
     cd ..
 fi
-
-node index.js

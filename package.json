@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "./start-script.sh",
+    "start": "node index.js",
+    "build": "./build-script.sh",
+    "prepere": "./install-script.sh",
     "test": "BLOGS_FOLDER=/home/medzair/www node --test"
   },
   "author": "",
