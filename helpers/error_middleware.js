@@ -1,9 +1,11 @@
 import ErrorTypes from "../helpers/error_types.js";
 
 const specificErrorHandler = (error, request, response, next) => {
-  switch (error.name) {
+  switch (error.code) {
     case "DEFINED_ERROR":
       return response.status(401).json({ error: "error message" });
+    case "ENOENT":
+      return response.status(501).json({ error: error.message });
     case "Bad Request":
       return response
         .status(ErrorTypes.BAD_REQUEST)
@@ -17,7 +19,7 @@ const specificErrorHandler = (error, request, response, next) => {
 };
 
 const generalErrorHandler = (error, request, response, next) => {
-  console.log("🤮", error.name, error.message, "🤮");
+  console.log("🤮", error.name, "🤮", error.message, "🤮");
   response
     .status(ErrorTypes.UNSUPPORTED_MEDIA_TYPE)
     .json({ error: error.message });
