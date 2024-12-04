@@ -50,7 +50,10 @@ function CreateBlog(params) {
           <tr>
             <td colSpan={2}>
               <TextEditor
-                onInput={(quilHtml) => setBlog("content", quilHtml)}
+                onInput={(quilHtml) => {
+                  setBlog("content", quilHtml);
+                  console.log(quilHtml);
+                }}
               />
             </td>
           </tr>

@@ -5,6 +5,7 @@ import "quill/dist/quill.snow.css";
 function TextEditor(params) {
   const { onInput, defaultValue, ...rest } = params;
 
+  const apps = [];
   let quillRef;
 
   const getQuillHtml = () => quillRef.root.innerHTML;
