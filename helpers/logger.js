@@ -1,5 +1,6 @@
 import winston from "winston";
 import morgan from "morgan";
+import env from "./config.js";
 
 const logger = winston.createLogger({
   level: "info",
@@ -13,7 +14,7 @@ const logger = winston.createLogger({
     new winston.transports.Console(),
     new winston.transports.File({
       filename: "logs/all.log",
-      level: "info"
+      level: "info",
     }),
     new winston.transports.File({
       filename: "logs/error.log",
@@ -23,9 +24,12 @@ const logger = winston.createLogger({
 });
 
 const loggerMiddleware = morgan(
-  ":remote-addr :remote-user :method :url :status [:response-time ms]",
+  ":remote-addr :method :url :status [:response-time ms] :user-agent",
   {
-    stream: { write: (message) => logger.info(message) },
+    stream: {
+      write: (message) => logger.info(message),
+    },
+    skip:() => env.NODE_ENV == "testing",
   }
 );
 

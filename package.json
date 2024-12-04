@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
     "start": "NODE_ENV=production node index.js",
-    "test": "NODE_ENV=test BLOGS_FOLDER=/home/medzair/www node --test",
+    "test": "NODE_ENV=testing BLOGS_FOLDER=/home/medzair/www/test node --test",
     "build": "./build-script.sh",
     "prepere": "./install-script.sh"
   },

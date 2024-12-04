@@ -6,11 +6,11 @@ const specificErrorHandler = (error, request, response, next) => {
       return response.status(401).json({ error: "error message" });
     case "ENOENT":
       return response.status(501).json({ error: error.message });
-    case "Bad Request":
+    case "BAD_REQUEST":
       return response
         .status(ErrorTypes.BAD_REQUEST)
         .json({ error: "The body is missing attributes" });
-    case "Blog Not Found":
+    case "BLOG_NOT_FOUND":
       return response
         .status(ErrorTypes.NOT_FOUND)
         .json({ error: "The blog was not found" });
@@ -19,7 +19,7 @@ const specificErrorHandler = (error, request, response, next) => {
 };
 
 const generalErrorHandler = (error, request, response, next) => {
-  console.log("🤮", error.name, "🤮", error.message, "🤮");
+  console.log("🤮", error.code, "🤮", error.message, "🤮");
   response
     .status(ErrorTypes.UNSUPPORTED_MEDIA_TYPE)
     .json({ error: error.message });
