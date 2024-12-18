@@ -50,11 +50,9 @@ function CreateBlog(params) {
           <tr>
             <td colSpan={2}>
               <TextEditor
-                onInput={(quilHtml) => {
-                  setBlog("content", quilHtml);
-                  console.log(quilHtml);
-                }}
-              />
+          placeholder="The content of a new blog"
+          onInput={(quilHtml) => setBlog("content", quilHtml)}
+        />
             </td>
           </tr>
           <tr>

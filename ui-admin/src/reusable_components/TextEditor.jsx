@@ -1,38 +1,44 @@
+import { onMount } from "solid-js";
 import Quill from "quill";
-import { SolidQuill } from "solid-quill";
+
 import "quill/dist/quill.snow.css";
 
+const toolbar = [
+  ["bold", "italic", "underline", "strike"],
+  [{ list: "ordered" }, { list: "bullet" }],
+  [{ indent: "-1" }, { indent: "+1" }],
+  [{ header: [2, 3, false] }],
+  ["link", "image", "code-block"],
+];
+
+const options = {
+  placeholder: "Hello, World! A new blog to write ",
+  modules: {
+    toolbar: toolbar,
+  },
+  theme: "snow",
+};
+
 function TextEditor(params) {
-  const { onInput, defaultValue, ...rest } = params;
+  const { onInput, initialValue, placeholder } = params;
 
-  const apps = [];
-  let quillRef;
+  options.placeholder = placeholder;
+  const getHtmlContent = () => quill.root.innerHTML;
 
-  const getQuillHtml = () => quillRef.root.innerHTML;
+  let quill;
 
-  const quillConfig = {
-    toolbar: {
-      container: [
-        ["bold", "italic", "underline", "strike"],
-        [{ align: [] }],
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ indent: "-1" }, { indent: "+1" }],
-        [{ header: [2, 3, false] }],
-        ["link", "image", "code-block"], // need fix / replacement
-      ],
-    },
-  };
+  onMount(() => {
+    const container = document.getElementById("editor");
+    quill = new Quill(container, options);
+    quill.root.innerHTML = initialValue || "";
+    quill.on("text-change", function (delta, oldDelta, source) {
+      if (source === "user") {
+        onInput(getHtmlContent());
+      }
+    });
+  });
 
-  return (
-    <SolidQuill
-      ref={quillRef}
-      onTextChange={() => onInput(getQuillHtml())}
-      innerHTML={defaultValue}
-      modules={quillConfig}
-      theme="snow"
-      {...rest}
-    />
-  );
+  return <div id="editor" class="blog-content blog-editor"></div>;
 }
 
 export default TextEditor;
