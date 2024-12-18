@@ -4,12 +4,16 @@ function Header({ navItems }) {
   const links = navItems || [
     { name: "home", href: "/" },
     { name: "new blog", href: "/blogs/new" },
-    { name: "about", href: "/about" },
   ];
 
   return (
-    <header>
-      <h1>Welcome to my website</h1>
+    <header style={{ border: "solid" }}>
+      <div>
+        <h1 className="tiny5-regular">
+          <a href="/">~/admin.medzair.com</a>
+        </h1>
+        <span>Welcome Mohammed to the Dashboard</span>
+      </div>
       <nav>
         <ul>
           <For each={links}>

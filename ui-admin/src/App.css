@@ -1,8 +1,96 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900");
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Offside");
+.tiny5-regular {
+  font-family: "Tiny5", sans-serif;
+  font-size: 3rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Header */
+
+header {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+}
+header > div {
+  margin-block: 30px;
+  margin-inline: 20px;
+}
+header > div > h1 {
+  margin: 0;
+}
+header > div > h1 > a {
+  color: black;
+  text-decoration: none;
+}
+nav {
+  font-family: "Offside", sans-serif;
+  margin-block: 20px;
+  margin-right: 10vw;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+nav > ul {
+  padding: 0;
+}
+
+nav > ul > li {
+  display: inline;
+  padding-inline: 20px;
+}
+
+/* Blog list */
+
+.blogs-list{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Blog card */
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-bottom: 10px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: wheat;
+}
+
+.blog-card > a {
+  font-size: larger;
+  font-weight: bold;
+}
+.blog-card > .row > button {
+  padding-inline: 25px;
+  font-weight: bold;
+}
+
+.blog-card > span {
+  font-size: small;
+  padding-left: 10px;
+  color: darkred;
+}
+
+/* ... */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: sans-serif;
 }
 
 .logo {
@@ -41,4 +129,176 @@
 nav > ul > li {
   display: inline;
   padding-inline: 20px;
+}
+
+/* Rows */
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+}
+
+/* Buttons : Normal */
+
+.btn {
+  background-color: rgb(49, 49, 83);
+  width: fit-content;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  padding: 0px 15px;
+  color: wheat;
+  font-size: small;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(58, 58, 94);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+/* Buttons : <A> */
+
+.btn-ancher {
+  color: rgb(49, 49, 83);
+  background: none;
+  width: fit-content;
+  border: none;
+  padding: 0px 15px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.btn-ancher:hover {
+  color: rgb(58, 58, 94);
+}
+
+.btn-ancher:active {
+  transform: scale(0.95);
+}
+
+/* NEW BLOG */
+
+.new-blog {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  background-color: wheat;
+}
+
+.new-blog > input {
+  font-size: 2rem;
+  min-width: 75%;
+  border: none;
+  margin-bottom: 10px;
+
+  color: #333;
+  text-align: center;
+}
+
+.blog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: 1.3rem;
+  line-height: 1.4;
+  text-align: start;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+.blog-content h2,
+.blog-content h3 {
+  margin: 2.5rem 0 1.5rem 0.5rem;
+
+  color: #333;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.blog-content > p {
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+
+/* Blog Editor */
+
+.ql-toolbar {
+  position: absolute;
+  bottom: -20px;
+  background-color: white;
+}
+
+.blog-editor {
+  background-color: white;
+
+  height: 500px;
+  width: 95%;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+
+/* ... */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  padding-block: 3rem;
+}
+
+
+/* Blog Page */
+
+.blog-page {
+  max-width: calc(100% / 1.3);
+}
+
+.blog-page h1 {
+  font-size: 3rem;
+  margin-top: 0;
+
+  color: #333;
+  text-align: center;
+}
+
+.blog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  font-size: 1.3rem;
+  line-height: 1.4;
+  text-align: start;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+.blog-content h2,
+.blog-content h3 {
+  margin: 2.5rem 0 1.5rem 0.5rem;
+
+  color: #333;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.blog-content > p {
+  margin-bottom: 15px;
+  margin-top: 0px;
 }

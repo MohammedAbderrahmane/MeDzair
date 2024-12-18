@@ -26,48 +26,29 @@ function CreateBlog(params) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Adding a new blog :</h2>
-      <table border="solid">
-        <tbody>
-          <tr>
-            <td>
-              <label htmlFor="title">Title :</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                id="title"
-                onInput={(e) => setBlog("title", e.currentTarget.value)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <label htmlFor="content">Content of the blog :</label>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <TextEditor
+    <>
+      <form class="new-blog">
+        <h1>Adding a new blog</h1>
+        <input
+          type="text"
+          placeholder="A proper title"
+          onInput={(e) => setBlog("title", e.currentTarget.value)}
+        />
+        <TextEditor
           placeholder="The content of a new blog"
           onInput={(quilHtml) => setBlog("content", quilHtml)}
         />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <button type="submit">submit</button>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <Notification status={notification} />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+        <Notification status={notification} />
+        <button class="btn" type="submit" onClick={handleSubmit}>
+          create a new blog
+        </button>
+      </form>
+      <hr />
+      <div class="blog-page">
+        <h1>{blog.title}</h1>
+        <div class="blog-content" innerHTML={blog.content} />
+      </div>
+    </>
   );
 }
 
