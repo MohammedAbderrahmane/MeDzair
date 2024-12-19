@@ -3,9 +3,25 @@ import ErrorTypes from "../helpers/error_types.js";
 const specificErrorHandler = (error, request, response, next) => {
   switch (error.code) {
     case "DEFINED_ERROR":
-      return response.status(401).json({ error: "error message" });
+      return response
+        .status(ErrorTypes.NOT_IMPLEMENTED)
+        .json({ error: "error message" });
+    case "NOT_FOUND":
+      return response
+        .status(ErrorTypes.NOT_FOUND)
+        .json({ error: error.message });
+    case "UNAUTHORIZED":
+      return response
+        .status(ErrorTypes.UNAUTHORIZED)
+        .json({ error: error.message });
     case "ENOENT":
-      return response.status(501).json({ error: error.message });
+      return response
+        .status(ErrorTypes.NOT_FOUND)
+        .json({ error: error.message });
+    case "EACCES":
+      return response
+        .status(ErrorTypes.FORBIDDEN)
+        .json({ error: error.message });
     case "BAD_REQUEST":
       return response
         .status(ErrorTypes.BAD_REQUEST)
@@ -20,9 +36,7 @@ const specificErrorHandler = (error, request, response, next) => {
 
 const generalErrorHandler = (error, request, response, next) => {
   console.log("🤮", error.code, "🤮", error.message, "🤮");
-  response
-    .status(ErrorTypes.UNSUPPORTED_MEDIA_TYPE)
-    .json({ error: error.message });
+  response.status(ErrorTypes.NOT_IMPLEMENTED).json({ error: error.message });
 };
 
 export { specificErrorHandler, generalErrorHandler };
