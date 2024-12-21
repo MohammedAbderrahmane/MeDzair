@@ -1,5 +1,8 @@
 import { Router, Route } from "@solidjs/router";
-import { useContext } from "solid-js";
+import { createEffect, useContext } from "solid-js";
+
+import BlogService from "./services/blog.js";
+import AuthService from "./services/auth.js";
 
 import Blog from "./routes/blogs/[id]";
 import CreateBlog from "./routes/blogs/new";
@@ -15,10 +18,23 @@ import "./App.css";
 import UserContext from "./reusable_components/Context/user.jsx";
 
 function App() {
-  const [user] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
 
-  if (!user.username && !window.location.href.includes("/auth"))
-    window.location.href = "/auth";
+  createEffect(async () => {
+    const localUser = JSON.parse(window.localStorage.getItem("user"));
+    if (!localUser && !window.location.href.includes("/auth")) {
+      window.location.href = "/auth";
+      return;
+    }
+    if (localUser && !(await AuthService.verifySession(localUser.authToken))) {
+      window.localStorage.removeItem("user");
+      window.location.href = "/auth";
+      return;
+    }
+    setUser(localUser);
+    console.log(localUser.authToken);
+    BlogService.setUpHeaders(localUser.authToken);
+  });
 
   return (
     <>

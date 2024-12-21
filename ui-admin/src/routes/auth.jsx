@@ -18,8 +18,12 @@ function Auth(params) {
     event.preventDefault();
     setLoading();
     try {
-      await AuthService.login(user);
+      const authToken = await AuthService.login(user);
       setSuccess("Suceess");
+      window.localStorage.setItem(
+        "user",
+        JSON.stringify({ ...user, authToken })
+      );
       setTimeout(() => {
         navigate("/");
       }, 1000);
