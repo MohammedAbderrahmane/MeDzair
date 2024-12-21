@@ -6,7 +6,7 @@ function useNotification() {
   const [notification, setStatus] = createStore();
 
   const setLoading = () => setStatus({ loading: true });
-  
+
   const setSuccess = (message) => {
     setStatus({ message: message, success: true });
     clear();
@@ -17,6 +17,7 @@ function useNotification() {
     clear();
   };
 
+  // TOFIX : does works but doent update in UI
   const clear = () => setTimeout(() => setStatus({}), DELAY);
 
   return {

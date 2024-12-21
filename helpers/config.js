@@ -19,12 +19,8 @@ if (env.NODE_ENV != "testing") {
 }`;
   if (!FileSystem.existsSync(`${env.CONF_FOLDER}`)) {
     FileSystem.mkdirSync(`${env.CONF_FOLDER}`, { recursive: true });
-    FileSystem.writeFileSync(
-      `${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`,
-      defaultCredentials,
-      "utf-8"
-    );
-  } else if (
+  }
+  if (
     !FileSystem.existsSync(`${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`)
   ) {
     FileSystem.writeFileSync(

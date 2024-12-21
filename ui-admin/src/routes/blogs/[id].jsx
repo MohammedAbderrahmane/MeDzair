@@ -1,5 +1,5 @@
 import { createResource } from "solid-js";
-import { useParams } from "@solidjs/router";
+import { useNavigate, useParams } from "@solidjs/router";
 import Resource from "../../reusable_components/Resource";
 import BlogService from "../../services/blog";
 
@@ -15,14 +15,19 @@ function Blog(params) {
   );
 }
 
-function BlogPage({ blog }) {
+function BlogPage({ blog }) {  
   const handleUpdate = () => {
     window.location.href = `/blogs/update/${blog.id}`;
   };
-
+  
+  const navigate = useNavigate();
   const handleDelete = () => {
+    const confimChoice = window.confirm(
+      `Are you sure you want to delete This blog titled : ${blog.title}`
+    );
+    if (!confimChoice) return;
     BlogService.remove(blog.id);
-    mutate((array) => array.filter((item) => item.id != blog.id));
+    navigate("/");
   };
 
   return (

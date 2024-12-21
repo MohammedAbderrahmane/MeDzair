@@ -1,11 +1,18 @@
 import BlogService from "../services/blog.js";
+import { useNavigate } from "@solidjs/router";
 
 function BlogCard({ blog, mutate }) {
+  const navigate = useNavigate();
   const handleUpdate = () => {
-    window.location.href = `/blogs/update/${blog.id}`;
+    navigate(`/blogs/update/${blog.id}`);
+    // window.location.href = `/blogs/update/${blog.id}`;
   };
 
   const handleDelete = () => {
+    const confimChoice = window.confirm(
+      `Are you sure you want to delete This blog titled : ${blog.title}`
+    );
+    if (!confimChoice) return;
     BlogService.remove(blog.id);
     mutate((array) => array.filter((item) => item.id != blog.id));
   };

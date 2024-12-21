@@ -345,8 +345,8 @@ nav > ul > li {
   cursor: pointer;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-form input[type="text"],
+.login-form input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -354,7 +354,7 @@ input[type="password"] {
   border-radius: 3px;
 }
 
-button[type="submit"] {
+.login-form button[type="submit"] {
   width: 100%;
   padding: 10px;
   background-color: #007bff;
@@ -364,7 +364,7 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+.login-form button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
