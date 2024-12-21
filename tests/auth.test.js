@@ -54,6 +54,24 @@ describe("AUTH", () => {
     };
     await api.post(BASE_URL).send(user).expect(ErrorTypes.UNAUTHORIZED);
   });
+
+  test("Auth : missing password attribut", async () => {
+    const user = {
+      username: "admin",
+    };
+    await api.post(BASE_URL).send(user).expect(ErrorTypes.BAD_REQUEST);
+  });
+
+  test("Auth : missing username attribut", async () => {
+    const user = {
+      password: "admin",
+    };
+    await api.post(BASE_URL).send(user).expect(ErrorTypes.BAD_REQUEST);
+  });
+
+  test("Auth : missing body", async () => {
+    await api.post(BASE_URL).expect(ErrorTypes.BAD_REQUEST);
+  });
 });
 
 after(() => {
