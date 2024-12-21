@@ -1,4 +1,5 @@
 import FileSystem from "fs";
+import env from "./config.js";
 
 const hasAllAttributes = (object, wantedAttributes) =>
   wantedAttributes.every(
@@ -24,4 +25,11 @@ const fileExists = (filePath) => {
 const getCurrentDay = () =>
   new Date().toISOString().slice(0, 10).split("-").reverse().join("/");
 
-export { hasAllAttributes, CustomError, fileExists, getCurrentDay };
+const admin = () =>
+  JSON.parse(
+    FileSystem.readFileSync(
+      `${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`
+    ).toString()
+  );
+
+export { hasAllAttributes, CustomError, fileExists, getCurrentDay, admin };

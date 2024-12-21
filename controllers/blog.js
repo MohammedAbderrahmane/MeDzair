@@ -1,6 +1,7 @@
 import express from "express";
 
 import Blog from "../models/Blog.js";
+import Auth from "../models/Auth.js";
 import SuccessTypes from "../helpers/success_types.js";
 
 const router = express.Router();
@@ -16,7 +17,12 @@ router.get("/:id", async (request, response, next) => {
   response.status(SuccessTypes.OK).json(blog);
 });
 
-// TODO : add authentification to updates
+router.use((request, response, next) => {
+  const authorization = request.get("authorization");
+  Auth.verify(authorization);
+  next();
+});
+
 router.post("/", async (request, response, next) => {
   const body = request.body;
   const blog = Blog.create(body);

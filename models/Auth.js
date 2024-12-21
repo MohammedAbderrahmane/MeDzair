@@ -1,33 +1,44 @@
-import FileSystem from "fs";
+import { admin } from "../helpers/helpers.js";
 import env from "../helpers/config.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 import { CustomError } from "../helpers/helpers.js";
 
 const Auth = {
   login: () => {},
+  verify: () => {},
 };
 
 Auth.login = (username, password, rememberMe) => {
-  if (!FileSystem.existsSync(`${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`))
-    throw new CustomError("NOT_FOUND", "credentials file not found");
   if (!username || !password)
     throw new CustomError("BAD_REQUEST", "attributs are messing");
 
-  const { adminUsername, adminPassword } = JSON.parse(
-    FileSystem.readFileSync(
-      `${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`
-    ).toString()
-  );
-
   if (
-    !(username === adminUsername) ||
-    !bcrypt.compareSync(password, adminPassword)
+    !(username === admin().adminUsername) ||
+    !bcrypt.compareSync(password, admin().adminPassword)
   )
     throw new CustomError("UNAUTHORIZED", "wrong username/password");
 
-  // TODO : Remember me
-  return true;
+  const authToken = jwt.sign({ username }, env.JWT_TOKEN, {
+    expiresIn: rememberMe ? "7d" : "30m",
+  });
+
+  return authToken;
+};
+
+Auth.verify = (authorization) => {
+  if (!authorization)
+    throw new CustomError("UNAUTHORIZED", "You have no authorization");
+
+  const authToken = authorization.replace("Bearer ", "");
+  try {
+    jwt.verify(authToken, env.JWT_TOKEN);
+  } catch (error) {
+    if (error.expiredAt)
+      throw new CustomError("SESSION_EXPIRED", "your session has expired");
+    throw new CustomError("UNAUTHORIZED", "wrong credentials");
+  }
 };
 
 export default Auth;

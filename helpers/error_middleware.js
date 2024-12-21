@@ -6,6 +6,10 @@ const specificErrorHandler = (error, request, response, next) => {
       return response
         .status(ErrorTypes.NOT_IMPLEMENTED)
         .json({ error: "error message" });
+    case "SESSION_EXPIRED":
+      return response
+        .status(ErrorTypes.SESSION_EXPIRED)
+        .json({ error: error.message });
     case "NOT_FOUND":
       return response
         .status(ErrorTypes.NOT_FOUND)
