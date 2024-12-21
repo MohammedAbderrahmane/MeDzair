@@ -1,4 +1,5 @@
 import { before, describe, test, todo, after } from "node:test";
+import jwt from "jsonwebtoken";
 import { getCurrentDay } from "../helpers/helpers.js";
 import env from "../helpers/config.js";
 import assert from "node:assert";
@@ -18,6 +19,12 @@ const exempleBlog = {
   id: "6OPUAnKyGjrG9uC1pu8jZg",
   date: "01/01/2000",
 };
+let defaultToken;
+before(() => {
+  const authToken = jwt.sign({ username: "admin" }, env.JWT_TOKEN);
+  const a = jwt.verify(authToken,env.JWT_TOKEN)
+  defaultToken = `Bearer ${authToken}`;
+});
 
 describe("GET :", () => {
   before(() => {
@@ -60,6 +67,7 @@ describe("POST :", () => {
     };
     const result1 = await api
       .post("/api/blogs")
+      .set("Authorization", defaultToken)
       .send(newBlog)
       .expect(SuccessType.Created);
     assert.strictEqual(result1.body.title, newBlog.title);
@@ -75,14 +83,22 @@ describe("POST :", () => {
     const newBlog = {
       content: "non-volatile",
     };
-    await api.post("/api/blogs").send(newBlog).expect(400);
+    await api
+      .post("/api/blogs")
+      .set("Authorization", defaultToken)
+      .send(newBlog)
+      .expect(400);
   });
 
   test("POST /blogs : missing content : return BAD_REQUEST", async () => {
     const newBlog = {
       title: "You can't quantify the circuit of primary SSD program!",
     };
-    await api.post("/api/blogs").send(newBlog).expect(400);
+    await api
+      .post("/api/blogs")
+      .set("Authorization", defaultToken)
+      .send(newBlog)
+      .expect(400);
   });
 });
 
@@ -104,6 +120,7 @@ describe("PUT :", () => {
     const result = await api
       .put(`/api/blogs/${exempleValidId}`)
       .send(updatedBlog)
+      .set("Authorization", defaultToken)
       .expect(SuccessType.OK);
     assert.deepEqual(result.body, {
       ...updatedBlog,
@@ -127,6 +144,7 @@ describe("PUT :", () => {
     };
     await api
       .put(`/api/blogs/${exempleValidId}`)
+      .set("Authorization", defaultToken)
       .send(updatedBlog)
       .expect(ErrorTypes.BAD_REQUEST);
   });
@@ -138,6 +156,7 @@ describe("PUT :", () => {
     };
     await api
       .put(`/api/blogs/${exempleValidId}`)
+      .set("Authorization", defaultToken)
       .send(updatedBlog)
       .expect(ErrorTypes.BAD_REQUEST);
   });
@@ -151,6 +170,7 @@ describe("PUT :", () => {
     };
     await api
       .put(`/api/blogs/${exempleValidId}`)
+      .set("Authorization", defaultToken)
       .send(updatedBlog)
       .expect(ErrorTypes.BAD_REQUEST);
   });
@@ -164,6 +184,7 @@ describe("PUT :", () => {
     };
     await api
       .put(`/api/blogs/${exempleInvalidId}`)
+      .set("Authorization", defaultToken)
       .send(updatedBlog)
       .expect(ErrorTypes.NOT_FOUND);
   });
@@ -173,6 +194,7 @@ describe("DELETE :", () => {
   test("DELETE /ID : return NO_CONTENT", async () => {
     await api
       .delete(`/api/blogs/${exempleValidId}`)
+      .set("Authorization", defaultToken)
       .expect(SuccessType.NoContent);
     const fileRemoved = !FileSystem.existsSync(
       `${env.BLOGS_FOLDER}/${exempleValidId}.json`
@@ -182,6 +204,7 @@ describe("DELETE :", () => {
   test("DELETE /WRONG_ID : return NOT_FOUND", async () => {
     await api
       .delete(`/api/blogs/${exempleInvalidId}`)
+      .set("Authorization", defaultToken)
       .expect(ErrorTypes.NOT_FOUND);
   });
 });
