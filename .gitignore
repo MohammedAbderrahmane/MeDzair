@@ -4,4 +4,6 @@ package-lock.json
 
 node_modules
 dist
+dist-ui-client
+dist-ui-admin
 logs

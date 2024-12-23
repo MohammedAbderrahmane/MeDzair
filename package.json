@@ -5,11 +5,11 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon index.js",
+    "dev": "./scripts/dev-script.sh",
     "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=testing node --test",
-    "build": "./build-script.sh",
-    "prepere": "./install-script.sh"
+    "build:all": "./scripts/build-script.sh",
+    "install:all": "./scripts/install-script.sh"
   },
   "author": "",
   "license": "ISC",
