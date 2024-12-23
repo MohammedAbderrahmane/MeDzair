@@ -21,4 +21,14 @@ const verifySession = async (authToken) => {
   }
 };
 
-export default { login, verifySession };
+const connect = (setUser, user) => {
+  window.localStorage.setItem("user", JSON.stringify(user));
+  setUser(user);
+};
+
+const disconnect = (setUser) => {
+  window.localStorage.removeItem("user");
+  setUser(null);
+};
+
+export default { login, verifySession, connect, disconnect };

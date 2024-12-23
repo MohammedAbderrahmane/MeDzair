@@ -1,5 +1,6 @@
 import { useNavigate } from "@solidjs/router";
 import { useContext } from "solid-js";
+import { createStore } from "solid-js/store";
 
 import Notification from "../reusable_components/Notification";
 import useNotification from "../reusable_components/Notification/useNotification.js";
@@ -10,6 +11,11 @@ import AuthService from "../services/auth.js";
 function Auth(params) {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
+  const [login, setLogin] = createStore({
+    username: "",
+    password: "",
+    rememberMe: false,
+  });
 
   const { notification, setSuccess, setFailure, setLoading } =
     useNotification();
@@ -18,13 +24,12 @@ function Auth(params) {
     event.preventDefault();
     setLoading();
     try {
-      const authToken = await AuthService.login(user);
+      const authToken = await AuthService.login(login);
       setSuccess("Suceess");
-      window.localStorage.setItem(
-        "user",
-        JSON.stringify({ ...user, authToken })
-      );
+      
       setTimeout(() => {
+        const username = login.username;
+        AuthService.connect(setUser, { username, authToken });
         navigate("/");
       }, 1000);
     } catch (error) {
@@ -41,7 +46,7 @@ function Auth(params) {
           type="text"
           id="username-input"
           required
-          onInput={(event) => setUser("username", event.currentTarget.value)}
+          onInput={(event) => setLogin("username", event.currentTarget.value)}
         />
 
         <label for="password-input">Password:</label>
@@ -49,7 +54,7 @@ function Auth(params) {
           type="password"
           id="password-input"
           required
-          onInput={(event) => setUser("password", event.currentTarget.value)}
+          onInput={(event) => setLogin("password", event.currentTarget.value)}
         />
 
         <div class="remember-me-div">
@@ -57,7 +62,7 @@ function Auth(params) {
             type="checkbox"
             id="remember-me-input"
             onInput={(event) =>
-              setUser("rememberMe", event.currentTarget.checked)
+              setLogin("rememberMe", event.currentTarget.checked)
             }
           />
           <label for="remember-me-input">Remember Me</label>
