@@ -27,7 +27,9 @@ function Header({ navItems }) {
           <For each={links}>
             {(link) => (
               <li>
-                <a href={link.href}>{link.name}</a>
+                <a class="anchor" href={link.href}>
+                  {link.name}
+                </a>
               </li>
             )}
           </For>
@@ -38,7 +40,7 @@ function Header({ navItems }) {
               </a>
             </li>
             <li>
-              <button class="btn-ancher" onClick={handleLog}>
+              <button class="btn-anchor" onClick={handleLog}>
                 logout
               </button>
             </li>

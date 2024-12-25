@@ -24,10 +24,10 @@ function BlogCard({ blog, mutate }) {
       </a>
       <span>{blog.date}</span>
       <div class="row">
-        <button class="btn-ancher" onClick={handleUpdate}>
+        <button class="btn-anchor" onClick={handleUpdate}>
           update
         </button>
-        <button class="btn-ancher" onClick={handleDelete}>
+        <button class="btn-anchor" onClick={handleDelete}>
           delete
         </button>
       </div>

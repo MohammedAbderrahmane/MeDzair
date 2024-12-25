@@ -38,7 +38,7 @@ function Auth(params) {
   };
 
   return (
-    <div class="login-form">
+    <div class="login-page">
       <h2>Please Enter your credential:</h2>
       <form>
         <label for="username-input">Username:</label>
@@ -68,7 +68,7 @@ function Auth(params) {
           <label for="remember-me-input">Remember Me</label>
         </div>
         <Notification status={notification} />
-        <button type="submit" onClick={handleSubmit}>
+        <button class="btn btn-wide" onClick={handleSubmit}>
           Login
         </button>
       </form>

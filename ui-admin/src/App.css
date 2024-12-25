@@ -28,7 +28,7 @@ header > div > h1 > a {
   text-decoration: none;
 }
 nav {
-  font-family: "Offside", sans-serif;
+  /* font-family: "Offside", sans-serif; */
   margin-block: 20px;
   margin-right: 10vw;
   margin-left: auto;
@@ -70,9 +70,17 @@ nav > ul > li {
 }
 
 .blog-card > a {
-  font-size: larger;
+  font-size: 25px;
   font-weight: bold;
+  color: rgb(49, 49, 83);
+  cursor: pointer;
+  text-decoration: none;
 }
+
+.blog-card > a:hover {
+  color: rgb(170, 40, 100);
+}
+
 .blog-card > .row > button {
   padding-inline: 25px;
   font-weight: bold;
@@ -160,9 +168,14 @@ nav > ul > li {
 .btn:active {
   transform: scale(0.95);
 }
+
+.btn-wide {
+  width: 100%;
+  padding-inline: 20px;
+}
 /* Buttons : <A> */
 
-.btn-ancher {
+.btn-anchor {
   color: rgb(49, 49, 83);
   background: none;
   width: fit-content;
@@ -172,12 +185,39 @@ nav > ul > li {
   cursor: pointer;
 }
 
-.btn-ancher:hover {
-  color: rgb(58, 58, 94);
+.btn-anchor:hover {
+  color: rgb(170, 40, 100);
 }
 
-.btn-ancher:active {
+.btn-anchor:active {
   transform: scale(0.95);
+}
+
+/* Anchor */
+
+.anchor {
+  color: rgb(49, 49, 83);
+  background: none;
+  width: fit-content;
+  border: none;
+  padding: 0px 15px;
+  font-size: large;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.anchor:hover {
+  color: rgb(170, 40, 100);
+  background: none;
+  width: fit-content;
+  border: none;
+  padding: 0px 15px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.anchor:active {
+  font-size: 0.9rem;
 }
 
 /* NEW BLOG */
@@ -320,8 +360,7 @@ nav > ul > li {
 }
 
 /* Auth */
-
-.login-form {
+.login-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -333,39 +372,24 @@ nav > ul > li {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.login-form > form {
+.login-page > form {
   width: 70%;
 }
 
-.login-form > form > label {
+.login-page > form > label {
   display: block;
   text-align: start;
   margin-bottom: 10px;
   cursor: pointer;
 }
 
-.login-form input[type="text"],
-.login-form input[type="password"] {
+.login-page input[type="text"],
+.login-page input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
-}
-
-.login-form button[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.login-form button[type="submit"]:hover {
-  background-color: #0056b3;
 }
 
 .remember-me-div {
