@@ -385,3 +385,61 @@ nav > ul > li {
   display: inline;
   cursor: pointer;
 }
+
+/* Profile */
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: wheat;
+  width: 70%;
+  padding: 20px;
+  padding-bottom: 60px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page > form {
+  width: 90%;
+}
+.profile-page > form > label {
+  display: block;
+  text-align: start;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.profile-page > form > input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Form */
+
+.blocks-form label {
+  display: block;
+  text-align: start;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.blocks-form input {
+  width: -moz-available;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* FieldSet */
+
+legend {
+  color: rgb(49, 49, 83);
+  font-size: medium;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 2px;
+}

@@ -10,10 +10,7 @@ function Header({ navItems }) {
     { name: "home", href: "/" },
     { name: "new blog", href: "/blogs/new" },
   ];
-  const handleLog = () => {
-    AuthService.disconnect(setUser);
-    window.location.href = "/auth";
-  };
+  const handleLog = () => AuthService.disconnect(setUser);
 
   return (
     <header style={{ border: "solid" }}>
@@ -34,7 +31,12 @@ function Header({ navItems }) {
               </li>
             )}
           </For>
-          <Show when={user}>
+          <Show when={user.username}>
+            <li>
+              <a class="anchor" href="/profile">
+                profile
+              </a>
+            </li>
             <li>
               <button class="btn-ancher" onClick={handleLog}>
                 logout

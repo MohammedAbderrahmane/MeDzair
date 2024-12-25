@@ -9,6 +9,7 @@ import CreateBlog from "./routes/blogs/new";
 import Main from "./routes/";
 import Update from "./routes/blogs/update";
 import Auth from "./routes/auth";
+import Profile from "./routes/profile";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -41,6 +42,7 @@ function App() {
           {user && user.username ? (
             <>
               <Route path="/" component={Main} />
+              <Route path="/profile" component={Profile} />
               <Route path="/blogs/:id" component={Blog} />
               <Route path="/blogs/new" component={CreateBlog} />
               <Route path="/blogs/update/:id" component={Update} />

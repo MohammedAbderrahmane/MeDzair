@@ -11,6 +11,7 @@ import {
 import blogRouter from "./controllers/blog.js";
 import { loggerMiddleware } from "./helpers/logger.js";
 import authRouter from "./controllers/auth.js";
+import profileRouter from "./controllers/profile.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -22,6 +23,7 @@ app.use(loggerMiddleware);
 
 app.use("/api/blogs", blogRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
 
 app.use(express.static(path.join(__dirname, "dist-ui-client")));
 app.get("*", (request, response) => {

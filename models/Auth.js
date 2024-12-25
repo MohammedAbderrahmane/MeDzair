@@ -15,8 +15,8 @@ Auth.login = (username, password, rememberMe) => {
     throw new CustomError("BAD_REQUEST", "attributs are messing");
 
   if (
-    !(username === admin().adminUsername) ||
-    !bcrypt.compareSync(password, admin().adminPassword)
+    !(username === admin().username) ||
+    !bcrypt.compareSync(password, admin().password)
   )
     throw new CustomError("UNAUTHORIZED", "wrong username/password");
 
