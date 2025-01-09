@@ -7,6 +7,8 @@ import {
   CustomError,
   fileExists,
   getCurrentDay,
+  getFileNameAndExtention,
+  toBase64,
 } from "../helpers/helpers.js";
 
 const Blog = {
@@ -15,6 +17,8 @@ const Blog = {
   getAll: () => {},
   update: () => {},
   delete: () => {},
+  view: () => {},
+  uploadImage: () => {},
 };
 
 Blog.create = (blog) => {
@@ -26,16 +30,12 @@ Blog.create = (blog) => {
     throw new CustomError("BAD_REQUEST", "content is messing");
 
   const blogJson = JSON.stringify(
-    { ...blog, id, date: getCurrentDay() },
+    { ...blog, id, date: getCurrentDay(), viewCount: 0 },
     null,
     2
   );
 
-  FileSystem.writeFileSync(
-    `${env.BLOGS_FOLDER}/${id}.json`,
-    blogJson,
-    "utf-8"
-  );
+  FileSystem.writeFileSync(`${env.BLOGS_FOLDER}/${id}.json`, blogJson, "utf-8");
   return { ...blog, id, date: getCurrentDay() };
 };
 
@@ -47,8 +47,8 @@ Blog.getOne = (id) => {
     `${env.BLOGS_FOLDER}/${id}.json`,
     "utf-8"
   );
-  const blogObject = JSON.parse(blogData);
-  return blogObject;
+  const blog = JSON.parse(blogData);
+  return blog;
 };
 
 Blog.getAll = () => {
@@ -56,11 +56,14 @@ Blog.getAll = () => {
 
   const files = FileSystem.readdirSync(`${env.BLOGS_FOLDER}`);
   for (const blogFile of files) {
-    const blogData = FileSystem.readFileSync(
-      `${env.BLOGS_FOLDER}/${blogFile}`
-    );
-    const blogObject = JSON.parse(blogData);
-    blogs.push(blogObject); 
+    const blogData = FileSystem.readFileSync(`${env.BLOGS_FOLDER}/${blogFile}`);
+    const blog = JSON.parse(blogData);
+    blogs.push({
+      title: blog.title,
+      date: blog.date,
+      id: blog.id,
+      viewCount: blog.viewCount,
+    });
   }
   return blogs;
 };
@@ -74,20 +77,55 @@ Blog.delete = (id) => {
 
 Blog.update = (id, blog) => {
   if (!fileExists(`${env.BLOGS_FOLDER}/${id}.json`))
-    throw new CustomError("BLOG_NOT_FOUND","Blog doesn't exist");
+    throw new CustomError("BLOG_NOT_FOUND", "Blog doesn't exist");
 
   if (!hasAllAttributes(blog, ["date", "title", "content"]))
-    throw new CustomError("BAD_REQUEST","Blog messing atributes");
+    throw new CustomError("BAD_REQUEST", "Blog messing atributes");
 
   blog.updateDate = blog.updateDate || getCurrentDay();
   const blogJson = JSON.stringify({ ...blog, id }, null, 2);
 
-  FileSystem.writeFileSync(
+  FileSystem.writeFileSync(`${env.BLOGS_FOLDER}/${id}.json`, blogJson, "utf-8");
+  return blog;
+};
+
+Blog.view = (id) => {
+  if (!fileExists(`${env.BLOGS_FOLDER}/${id}.json`))
+    throw new CustomError("BLOG_NOT_FOUND");
+
+  const blogData = FileSystem.readFileSync(
     `${env.BLOGS_FOLDER}/${id}.json`,
-    blogJson,
     "utf-8"
   );
-  return blog;
+  const blog = JSON.parse(blogData);
+
+  // if (!blog.macList) blog.macList = [];
+  if (!blog.viewCount) blog.viewCount = 0;
+
+  // for (const macItem of blog.macList) {
+  //   if (mac == macItem) return false;
+  // }
+  // blog.macList.push(mac);
+  blog.viewCount += 1;
+
+  FileSystem.writeFileSync(
+    `${env.BLOGS_FOLDER}/${id}.json`,
+    JSON.stringify(blog, null, 2)
+  );
+
+  return true;
+};
+
+Blog.uploadImage = async (files) => {
+  if (!files || Object.keys(files).length === 0)
+    throw new CustomError("BAD_REQUEST", "no files were uploaded");
+
+  const image = files.image;
+
+  const [fileName, extention] = getFileNameAndExtention(image.name);
+  const newFileLocation = `${env.IMAGES_FOLDER}/${toBase64(fileName)}${extention}`;
+  await image.mv(`${newFileLocation}`);
+  return fileName;
 };
 
 export default Blog;

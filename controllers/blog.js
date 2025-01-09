@@ -17,6 +17,14 @@ router.get("/:id", async (request, response, next) => {
   response.status(SuccessTypes.OK).json(blog);
 });
 
+router.post("/view/:id", async (request, response) => {
+  const blogId = request.get("blog-id");
+
+  const result = Blog.view(blogId);
+  if (result) return response.status(SuccessTypes.OK).end();
+  response.status(SuccessTypes.NotModified).end();
+});
+
 router.use((request, response, next) => {
   const authorization = request.get("authorization");
   Auth.verify(authorization);
