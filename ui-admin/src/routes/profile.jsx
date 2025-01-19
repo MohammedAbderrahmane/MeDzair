@@ -7,12 +7,14 @@ import AuthService from "../services/auth";
 import useNotification from "../reusable_components/Notification/useNotification";
 import Notification from "../reusable_components/Notification";
 import Resource from "../reusable_components/Resource";
+import axios from "axios";
+import BlogService from "../services/blog.js";
 
 function Profile(params) {
   const [user] = useContext(UserContext);
 
   const [info, { mutate, refetch }] = createResource(
-    async () => await ProfileService.get(user.authToken)
+    async () => await ProfileService.get()
   );
 
   return (
@@ -43,7 +45,7 @@ function Informations({ info, mutate, refetch }) {
     event.preventDefault();
     setLoading();
     try {
-      await ProfileService.update(info, user.authToken);
+      await ProfileService.update(info);
       if (info.username != user.username) {
         setSuccess("Suceess, You will be disconnected shortly");
         setTimeout(() => AuthService.disconnect(setUser), 2000);

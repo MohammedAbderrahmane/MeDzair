@@ -24,14 +24,7 @@ function App() {
   createEffect(async () => {
     const localUser = JSON.parse(window.localStorage.getItem("user"));
     if (!localUser) return;
-
-    const isSessionValid = await AuthService.verifySession(localUser.authToken);
-    if (!isSessionValid) {
-      AuthService.disconnect(setUser);
-      return;
-    }
-    setUser(localUser);
-    BlogService.setUpHeaders(localUser.authToken);
+    await AuthService.verifySession(localUser, setUser);
   });
 
   return (

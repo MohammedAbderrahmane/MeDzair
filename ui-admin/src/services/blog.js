@@ -1,10 +1,7 @@
 import axios from "axios";
+import Header from "./Header.js";
 
 const baseUrl = "/api/blogs";
-const options = { headers: { Authorization: "token" } };
-const setUpHeaders = (newAuthToken) => {
-  options.headers.Authorization = `Bearer ${newAuthToken}`;
-};
 
 const getAll = async () => {
   try {
@@ -26,7 +23,7 @@ const getOne = async (id) => {
 
 const add = async (blog) => {
   try {
-    const response = await axios.post(baseUrl, blog, options);
+    const response = await axios.post(baseUrl, blog, Header);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -35,7 +32,7 @@ const add = async (blog) => {
 
 const update = async (id, blog) => {
   try {
-    const resposne = await axios.put(`${baseUrl}/${id}`, blog, options);
+    const resposne = await axios.put(`${baseUrl}/${id}`, blog, Header);
     return resposne.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -44,10 +41,10 @@ const update = async (id, blog) => {
 
 const remove = async (id) => {
   try {
-    await axios.delete(`${baseUrl}/${id}`, options);
+    await axios.delete(`${baseUrl}/${id}`, Header);
   } catch (error) {
     throw new Error(error.response.data.error);
   }
 };
 
-export default { getAll, getOne, add, update, remove, setUpHeaders };
+export default { getAll, getOne, add, update, remove };
