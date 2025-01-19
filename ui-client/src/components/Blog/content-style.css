@@ -53,3 +53,45 @@
   color: white;
   font-size: 15px;
 }
+
+.blog-content s {
+  padding-block: 2px;
+  padding-inline: 5px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-family: monospace;
+  text-decoration: none;
+  background-color: #212830;
+  color: wheat;
+}
+
+.blog-content a {
+  padding-inline: 3px;
+  color: #212830;
+  text-decoration: none;
+  border-bottom: solid #212830 2px;
+}
+
+.blog-content a:hover {
+  border-radius: 5px;
+  color: midnightblue;
+  text-decoration: none;
+  background-color: #212830;
+  color: wheat;
+}
+
+.blog-content > p:has(img) {
+  color: #888;
+  font-size: medium;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-content > p > img {
+  max-width: 600px;
+  max-height: 600px;
+}
