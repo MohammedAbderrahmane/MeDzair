@@ -116,16 +116,4 @@ Blog.view = (id) => {
   return true;
 };
 
-Blog.uploadImage = async (files) => {
-  if (!files || Object.keys(files).length === 0)
-    throw new CustomError("BAD_REQUEST", "no files were uploaded");
-
-  const image = files.image;
-
-  const [fileName, extention] = getFileNameAndExtention(image.name);
-  const newFileLocation = `${env.IMAGES_FOLDER}/${toBase64(fileName)}${extention}`;
-  await image.mv(`${newFileLocation}`);
-  return fileName;
-};
-
 export default Blog;

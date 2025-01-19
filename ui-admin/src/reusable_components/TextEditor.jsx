@@ -2,6 +2,7 @@ import { onMount } from "solid-js";
 import Quill from "quill";
 
 import "quill/dist/quill.snow.css";
+import ImageService from "../services/image.js";
 
 const toolbar = [
   ["bold", "italic", "underline", "strike"],
@@ -23,7 +24,36 @@ function TextEditor(params) {
   const { onInput, initialValue, placeholder } = params;
 
   options.placeholder = placeholder;
-  const getHtmlContent = () => quill.root.innerHTML;
+
+  const imageHandler = function (value) {
+    var input = document.createElement("input");
+    input.type = "file";
+
+    input.onchange = async (e) => {
+      try {
+        const formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        const imageURL = await ImageService.uploadimage(formData);
+
+        const fileResult = new FileReader();
+        fileResult.onload = () => {
+          this.quill.insertEmbed(
+            this.quill.getSelection().index,
+            "image",
+            `http://localhost:3000${imageURL}` // Temperary sullotion
+          );
+        };
+
+        fileResult.readAsDataURL(e.target.files[0]);
+
+        console.log(`http://localhost:3000/${imageURL}`);
+      } catch (error) {
+        alert(`Failed to insert image : ${error}`);
+      }
+    };
+
+    input.click();
+  };
 
   let quill;
 
@@ -31,9 +61,11 @@ function TextEditor(params) {
     const container = document.getElementById("editor");
     quill = new Quill(container, options);
     quill.root.innerHTML = initialValue || "";
+    quill.getModule("toolbar").addHandler("image", imageHandler);
+
     quill.on("text-change", function (delta, oldDelta, source) {
-      if (source === "user") {
-        onInput(getHtmlContent());
+      if (source == "user") {
+        onInput(quill.getSemanticHTML());
       }
     });
   });

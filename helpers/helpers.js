@@ -31,5 +31,20 @@ const admin = () =>
       `${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`
     ).toString()
   );
+  
+const getFileNameAndExtention = (fileName) => [
+  fileName.replace(/\..*/, ""),
+  fileName.substring(fileName.lastIndexOf(".")),
+];
 
-export { hasAllAttributes, CustomError, fileExists, getCurrentDay, admin };
+const toBase64 = (fileName) => Buffer.from(fileName).toString("base64");
+
+export {
+  hasAllAttributes,
+  CustomError,
+  fileExists,
+  getCurrentDay,
+  admin,
+  getFileNameAndExtention,
+  toBase64,
+};
