@@ -4,63 +4,81 @@ import ResourceArray from "../reusable_components/ResourceArray";
 import BlogCard from "../components/Blog/card";
 
 import BlogService from "../services/blog";
+import Card from "../reusable_components/Card";
 
 function Main(params) {
-  const socialMedia = [
-    { name: "Github", href: "https://github.com/MohammedAbderrahmane" },
+  const welcomeText = [
+    " ",
+    "I am Louriachi Mohammed. In here I post blogs on programming ,networking and computer science",
+    `I also give advices that i will not be held responseble on`,
+  ];
+
+  const socialMedias = [
     {
-      name: "LinkedIn",
+      name: "github",
+      href: "https://github.com/MohammedAbderrahmane",
+      img: "github.png",
+    },
+    {
+      name: "linkedin",
       href: "https://www.linkedin.com/in/louriachi-abderrahman-27740230a/",
+      img: "linkedin.png  ",
     },
   ];
-  const [blogs, { mutate }] = createResource(
-    async () => await BlogService.getAll()
-  );
 
   return (
     <>
       <div className="introduction">
         <div>
-          <span className="break-line">Hello there 🖐️ !</span>
-          <p>
-            Louriachi Mohammed Here. In here i wil post blogs on
-            programming,networking and computer science .
-          </p>
-          <p className="break-line">
-            I will also give some advices that i will not be held responseble on
-            😂
-          </p>
-         
+          <span className="">Hello There and welcome to MeDzair</span>
+          <span>
+            I am Louriachi Mohammed. In here I post blogs on programming
+            ,networking and computer science
+          </span>
+          <span>
+            I also give advices that i will not be held responseble on
+          </span>
         </div>
 
         <ul>
-          <span>links :</span>
-          <SocialMediaComponent socialMedia={socialMedia} />
+          <SocialMediaComponent socialMedias={socialMedias} />
         </ul>
       </div>
-      <div>
-        <h2>List of blogs :</h2>
-        <ul>
-          <ResourceArray
-            resources={blogs}
-            RenderItem={(resource) => (
-              <BlogCard blog={resource} mutate={mutate} />
-            )}
-          />
-        </ul>
-      </div>
+      <Blogs />
     </>
   );
 }
 
-const SocialMediaComponent = ({ socialMedia }) => (
-  <For each={socialMedia}>
-    {(item) => (
-      <li>
-        <a href={item.href}>{item.name}</a>
-      </li>
-    )}
-  </For>
-);
+function SocialMediaComponent({ socialMedias }) {
+  return (
+    <For each={socialMedias}>
+      {(item) => (
+        <li>
+          <img src={item.img} width="25" />
+          <a href={item.href}>{item.name}</a>
+        </li>
+      )}
+    </For>
+  );
+}
+
+function Blogs(params) {
+  const [blogs, { mutate }] = createResource(
+    async () => await BlogService.getAll()
+  );
+
+  return (
+    <Card title="Blogs list : ">
+      <ul>
+        <ResourceArray
+          resources={blogs}
+          RenderItem={(resource) => (
+            <BlogCard blog={resource} mutate={mutate} />
+          )}
+        />
+      </ul>
+    </Card>
+  );
+}
 
 export default Main;

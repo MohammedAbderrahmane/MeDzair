@@ -1,3 +1,5 @@
+import Card from "../reusable_components/Card";
+
 function About(params) {
   const email = "louriachiabderrahman13@gmail.com";
   const studies = [
@@ -5,11 +7,13 @@ function About(params) {
       duration: "2020 - 2023",
       subject: "Computer science",
       place: "Abou-Bakr Balkaid university - Tlemcen",
+      img: "univ-tlemcen.png",
     },
     {
       duration: "2023 - 2025",
       subject: "Networking and distributed system",
       place: "Abou-Bakr Balkaid university - Tlemcen",
+      img: "univ-tlemcen.png",
     },
   ];
 
@@ -22,19 +26,14 @@ function About(params) {
           at <a href={email}>{email}</a>
         </span>
       </div>
-      <div>
-        <h2>Studies :</h2>
-        <For each={studies}>{(study) => <StudyCard study={study} />}</For>
-      </div>
-      <div>
-        <h2>Certerfications : comming soon</h2>
-      </div>
-      <div>
-        <h2>Projects : comming soon</h2>
-      </div>
-      <div>
-        <h2>Qualities : comming soon</h2>
-      </div>
+      <Card title="Studies : ">
+        <ul>
+          <For each={studies}>{(study) => <StudyCard study={study} />}</For>
+        </ul>
+      </Card>
+      <Card title="Certerfications : ">comming soon</Card>
+      <Card title="Projects : ">comming soon</Card>
+      <Card title="Qualities : ">comming soon</Card>
     </div>
   );
 }
@@ -44,6 +43,7 @@ const StudyCard = ({ study }) => (
     <span>{study.duration}</span>
     <span>{study.subject}</span>
     <span>{study.place}</span>
+    <img src={study.img} width="30px"/>
   </div>
 );
 

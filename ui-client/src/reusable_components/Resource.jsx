@@ -1,5 +1,6 @@
 import { Match, Switch } from "solid-js";
 import ErrorDiv from "./ErrorDiv";
+import LoadingDiv from "./LoadingDiv";
 
 function Resource({
   resource,
@@ -10,7 +11,7 @@ function Resource({
   return (
     <Switch>
       <Match when={resource.loading}>
-        <p>Loading...</p>
+        <LoadingDiv />
       </Match>
       <Match when={resource.error}>
         <ErrorDiv
