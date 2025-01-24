@@ -1,4 +1,5 @@
 import { onMount } from "solid-js";
+import hljs from "highlight.js";
 import Quill from "quill";
 
 import "quill/dist/quill.snow.css";
@@ -15,6 +16,7 @@ const toolbar = [
 const options = {
   placeholder: "Hello, World! A new blog to write ",
   modules: {
+    syntax: { hljs },
     toolbar: toolbar,
   },
   theme: "snow",
@@ -60,13 +62,13 @@ function TextEditor(params) {
   onMount(() => {
     const container = document.getElementById("editor");
     quill = new Quill(container, options);
-    quill.root.innerHTML = initialValue || "";
+
+    quill.clipboard.dangerouslyPasteHTML(initialValue);
     quill.getModule("toolbar").addHandler("image", imageHandler);
 
     quill.on("text-change", function (delta, oldDelta, source) {
-      if (source == "user") {
+      if (source == "user")
         onInput(quill.getSemanticHTML());
-      }
     });
   });
 

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import ErrorDiv from "./reusable_components/ErrorDiv";
 
 import "./App.css";
+import "./atom-one-dark.css"
 
 function App() {
   return (

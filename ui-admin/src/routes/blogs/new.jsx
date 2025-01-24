@@ -1,4 +1,7 @@
 import { createStore } from "solid-js/store";
+import highlight from "highlight.js";
+highlight.configure({ cssSelector: "pre" });
+
 import BlogService from "../../services/blog";
 
 import TextEditor from "../../reusable_components/TextEditor";
@@ -25,6 +28,11 @@ function CreateBlog(params) {
     }
   };
 
+  const handleHighlight = async (event) => {
+    event.preventDefault();
+    highlight.highlightAll();
+  };
+
   return (
     <>
       <form class="new-blog">
@@ -39,9 +47,14 @@ function CreateBlog(params) {
           onInput={(quilHtml) => setBlog("content", quilHtml)}
         />
         <Notification status={notification} />
-        <button class="btn" type="submit" onClick={handleSubmit}>
-          create a new blog
-        </button>
+        <div class="row">
+          <button class="btn" type="submit" onClick={handleHighlight}>
+            highlight code
+          </button>
+          <button class="btn" type="submit" onClick={handleSubmit}>
+            create a new blog
+          </button>
+        </div>
       </form>
       <hr />
       <div class="blog-page">

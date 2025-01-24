@@ -15,6 +15,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import "./App.css";
+import "./atom-one-dark.css"
 
 import UserContext from "./reusable_components/Context/user.jsx";
 

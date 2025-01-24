@@ -1,5 +1,8 @@
-import { createResource } from "solid-js";
+import { createEffect, createResource } from "solid-js";
 import { useNavigate, useParams } from "@solidjs/router";
+import highlight from "highlight.js";
+highlight.configure({ cssSelector: "pre" });
+
 import Resource from "../../reusable_components/Resource";
 import BlogService from "../../services/blog";
 
@@ -29,6 +32,10 @@ function BlogPage({ blog }) {
     BlogService.remove(blog.id);
     navigate("/");
   };
+
+  createEffect(async()=>{
+    highlight.highlightAll()
+  })
 
   return (
     <div className="blog-page">

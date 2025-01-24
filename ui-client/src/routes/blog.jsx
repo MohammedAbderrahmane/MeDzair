@@ -1,10 +1,13 @@
 import { createEffect, createResource } from "solid-js";
 import { useParams } from "@solidjs/router";
+import highlight from "highlight.js";
+highlight.configure({ cssSelector: "pre" });
 
 import Resource from "../reusable_components/Resource";
-import BlogContent from "../components/Blog";
 
 import BlogService from "../services/blog";
+
+import "../components/Blog/content-style.css";
 
 function Blog(params) {
   const { id } = useParams();
@@ -25,6 +28,17 @@ function Blog(params) {
         RenderComponent={(resource) => <BlogContent blog={resource} />}
       />
     </>
+  );
+}
+
+function BlogContent({ blog }) {
+  createEffect(async () => highlight.highlightAll());
+
+  return (
+    <div className="blog-page">
+      <h1>{blog.title}</h1>
+      <div className="blog-content" innerHTML={blog.content} />
+    </div>
   );
 }
 
