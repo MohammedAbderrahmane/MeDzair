@@ -22,8 +22,9 @@ const fileExists = (filePath) => {
   }
 };
 
-const getCurrentDay = () =>
-  new Date().toISOString().slice(0, 10).split("-").reverse().join("/");
+const getCurrentDay = () => new Date().toLocaleString().slice(0, 10);
+
+const getExactCurrentTime = () => new Date().toLocaleString().replace(",", "");
 
 const admin = () =>
   JSON.parse(
@@ -31,13 +32,14 @@ const admin = () =>
       `${env.CONF_FOLDER}/${env.CREDENTIALS_FILE_NAME}`
     ).toString()
   );
-  
+
 const getFileNameAndExtention = (fileName) => [
   fileName.replace(/\..*/, ""),
   fileName.substring(fileName.lastIndexOf(".")),
 ];
 
 const toBase64 = (fileName) => Buffer.from(fileName).toString("base64");
+
 
 export {
   hasAllAttributes,
@@ -46,5 +48,6 @@ export {
   getCurrentDay,
   admin,
   getFileNameAndExtention,
+  getExactCurrentTime,
   toBase64,
 };
