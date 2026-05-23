@@ -7,12 +7,12 @@ function Header({ navItems }) {
   ];
 
   return (
-    <header style={{ border: "solid" }}>
+    <header>
       <div>
         <h1 className="tiny5-regular">
           <a href="/">~/medzair.com</a>
         </h1>
-        <span>css is comming by the way</span>
+        <span>Stories that stick'nt. Ideas that do no sparks.</span>
       </div>
       <nav>
         <ul>

@@ -508,3 +508,7 @@ legend {
   padding: 3px 6px;
   border-radius: 2px;
 }
+
+.ql-toolbar{
+  position: static;
+}

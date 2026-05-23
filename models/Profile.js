@@ -8,7 +8,7 @@ const Profile = {
   get: () => {},
 };
 
-Profile.get = () => ({ username: admin().username, email: admin().email });
+Profile.get = () => ({ username: admin().adminUsername, email: admin().adminEmail });
 
 Profile.update = (user) => {
   const saltRounds = 10;

@@ -59,6 +59,7 @@ import {
   generalErrorHandler,
   specificErrorHandler,
 } from "./helpers/error_middleware.js";
+import { log } from "console";
 
 app.use(specificErrorHandler);
 app.use(generalErrorHandler);

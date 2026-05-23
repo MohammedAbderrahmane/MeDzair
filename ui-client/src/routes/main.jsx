@@ -7,11 +7,6 @@ import BlogService from "../services/blog";
 import Card from "../reusable_components/Card";
 
 function Main(params) {
-  const welcomeText = [
-    " ",
-    "I am Louriachi Mohammed. In here I post blogs on programming ,networking and computer science",
-    `I also give advices that i will not be held responseble on`,
-  ];
 
   const socialMedias = [
     {
@@ -30,14 +25,14 @@ function Main(params) {
     <>
       <div className="introduction">
         <div>
-          <span className="">Hello There and welcome to MeDzair</span>
+          <span>Hello There and welcome to <b>medzair.com</b></span>
           <span>
-            I am Louriachi Mohammed. In here I post blogs on programming
-            ,networking and computer science
-          </span>
-          <span>
-            I also give advices that i will not be held responseble on
-          </span>
+           Programming. Networking and Computer Science.<br/>
+           I write about the technical "deep" dives that comes with a warning label: <b>Use at your own discretion. I'm not liable for the borken code, server crashing.</b>
+           </span>
+         <span>
+          Anyway, Have fun reading these blogs 😀
+         </span>
         </div>
 
         <ul>

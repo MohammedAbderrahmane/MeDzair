@@ -31,6 +31,17 @@ body {
   min-height: 95vh;
 }
 
+.introduction > div > span {
+  font-size: 1.3rem;
+  line-height: 1.3;
+  text-align: start;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
 /* ---- */
 header {
   background-color: #212830;
@@ -40,7 +51,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  border-end-end-radius: 30px;
+  border-end-start-radius: 30px;
 }
+
 header > div {
   margin-block: 30px;
   margin-inline: 20px;
@@ -100,7 +115,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid;
+  /* border: solid;*/
 }
 
 /* ---- */
@@ -112,7 +127,7 @@ footer {
   align-items: center;
   text-align: start;
   padding: 1rem;
-  padding-block: 3rem;
+  padding-block: 1rem;
   max-width: 1280px;
   margin: 0 auto;
 }
