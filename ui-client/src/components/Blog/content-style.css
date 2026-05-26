@@ -1,5 +1,28 @@
 .blog-page {
-  width: calc(100% / 1.5);
+  /* width: 100%; */
+  max-width: 66ch;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.blog-main-title{
+margin-bottom: 0;
+align-self: center;
+}
+
+
+.blog-sub-title{
+  align-self: center;
+}
+
+.divider{
+  align-self: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  border-bottom: solid #212830 1px;
+  width: 50vw;
+
 }
 
 .blog-page h1 {
@@ -46,8 +69,42 @@
 }
 
 .blog-content > p {
-  margin-bottom: 15px;
+  hyphens: auto;
+  
+  /* 2. Forces a break even if the word doesn't have a natural syllable break */
+  overflow-wrap: anywhere; 
+  
+  /* Optional: Creates a perfectly straight right edge like a book */
+  text-align: left;
+  margin-bottom: 0px;
   margin-top: 0px;
+  line-height: 1.5;
+}
+
+.blog-content > p:has(+ p,+ ul,+ pre, + img) {
+  margin-bottom: 20px;
+}
+
+
+.blog-content > p:has(+ h3,+ h2){
+  margin-bottom: 40px;
+}
+
+.blog-content > ul:has(+ h3,+ h2){
+  margin-bottom: 40px;
+}
+
+.blog-content > pre:has(+ h3,+ h2){
+  margin-bottom: 40px;
+}
+
+p:has(+ p.ql-indent-1) {
+ margin-bottom: 10px;
+}
+
+.ql-indent-1{
+  margin-left: 30px;
+  margin-bottom: 15px;
 }
 
 .ql-code-block-container {

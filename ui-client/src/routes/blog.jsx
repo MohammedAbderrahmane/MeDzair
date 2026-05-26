@@ -36,7 +36,9 @@ function BlogContent({ blog }) {
 
   return (
     <div className="blog-page">
-      <h1>{blog.title}</h1>
+      <h1 className="blog-main-title">{blog.title}</h1>
+      <sub className="blog-sub-title">{blog.date}</sub>
+      <div className="divider"></div>
       <div className="blog-content" innerHTML={blog.content} />
     </div>
   );

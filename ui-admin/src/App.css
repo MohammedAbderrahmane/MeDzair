@@ -194,6 +194,16 @@ nav > ul > li {
 }
 
 /* Anchor */
+.menu-list {
+  display: flex;
+}
+
+.menu-list > li > a ,.menu-list > li > button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .anchor {
   color: rgb(49, 49, 83);
