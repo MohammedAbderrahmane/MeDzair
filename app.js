@@ -29,11 +29,13 @@ import profileRouter from "./controllers/profile.js";
 import blogRouter from "./controllers/blog.js";
 import authRouter from "./controllers/auth.js";
 import imageRouter from "./controllers/image.js";
+import statsRouter from "./controllers/stats.js";
 
 app.use("/api/blogs", blogRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/image", imageRouter);
+app.use("/api/stats", statsRouter);
 
 // -------- Static files
 import fileUpload from "express-fileupload";

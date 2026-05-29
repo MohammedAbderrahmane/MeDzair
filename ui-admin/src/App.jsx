@@ -18,6 +18,7 @@ import "./App.css";
 import "./atom-one-dark.css"
 
 import UserContext from "./reusable_components/Context/user.jsx";
+import Stats from "./routes/stats.jsx";
 
 function App() {
   const [user, setUser] = useContext(UserContext);
@@ -37,6 +38,7 @@ function App() {
             <>
               <Route path="/" component={Main} />
               <Route path="/profile" component={Profile} />
+              <Route path="/stats" component={Stats} />
               <Route path="/blogs/:id" component={Blog} />
               <Route path="/blogs/new" component={CreateBlog} />
               <Route path="/blogs/update/:id" component={Update} />
