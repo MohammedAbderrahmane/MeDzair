@@ -40,6 +40,17 @@ const getFileNameAndExtention = (fileName) => [
 
 const toBase64 = (fileName) => Buffer.from(fileName).toString("base64");
 
+const toMB_KB = (bytes) => {
+  if (bytes > (1024 * 1024 * 1024))
+    return (bytes / 1024 / 1024 / 1024).toFixed(2) + " GB";
+  if (bytes > (1024 * 1024))
+    return (bytes / 1024 / 1024).toFixed(2) + " MB";
+  else if (bytes > (1024))
+    return (bytes / 1024).toFixed(2) + " KB";
+  else if (bytes)
+    return bytes.toFixed(2) + " B";
+  return "-1 B"
+}
 
 export {
   hasAllAttributes,
@@ -50,4 +61,5 @@ export {
   getFileNameAndExtention,
   getExactCurrentTime,
   toBase64,
+  toMB_KB,
 };
