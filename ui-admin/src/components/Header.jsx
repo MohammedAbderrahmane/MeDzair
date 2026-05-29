@@ -16,7 +16,7 @@ function Header({ navItems }) {
   const handleLog = () => AuthService.disconnect(setUser);
 
   return (
-    <header style={{ border: "solid" }}>
+    <header>
       <div>
         <h1 className="tiny5-regular">
           <a href="/">~/admin.medzair.com</a>

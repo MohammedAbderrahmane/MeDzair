@@ -12,17 +12,17 @@ const init = () => {
 
   const requiredDirs = [
     env.WEBSITE_LOCATION,
+    env.LOGS_FOLDER,
     env.CONF_FOLDER,
     env.BLOGS_FOLDER,
     env.IMAGES_FOLDER,
-    env.LOGS_FOLDER,
   ];
 
   for (const dir of requiredDirs) {
     if (dir == undefined)
       throw new CustomError(
         "env variable missing",
-        "a critical variable is missing"
+        "a critical variable is missing",
       );
     if (!FileSystem.existsSync(dir))
       FileSystem.mkdirSync(dir, { recursive: true });

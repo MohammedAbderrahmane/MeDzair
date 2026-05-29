@@ -1,6 +1,7 @@
 import { For } from "solid-js";
 
 function Footer(params) {
+  const email = "louriachiabderrahman13@gmail.com";
   const links = [
     { name: "home", href: "/" },
     { name: "blogs", href: "/blogs" },
@@ -10,9 +11,9 @@ function Footer(params) {
 
   return (
     <footer>
-        <h6>all copy right reserved</h6>
+      <h5>© 2026 | contact : {email}</h5>
     </footer>
   );
 }
 
-export default Footer
+export default Footer;

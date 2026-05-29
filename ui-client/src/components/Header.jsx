@@ -1,10 +1,10 @@
 import { For } from "solid-js";
 
 function Header({ navItems }) {
-  const links = navItems || [
-    { name: "home", href: "/" },
-    { name: "about", href: "/about" },
-  ];
+  // const links = navItems || [
+  //   { name: "home", href: "/" },
+  //   { name: "about", href: "/about" },
+  // ];
 
   return (
     <header>
@@ -12,9 +12,9 @@ function Header({ navItems }) {
         <h1 className="tiny5-regular">
           <a href="/">~/medzair.com</a>
         </h1>
-        <span>Stories that stick'nt. Ideas that do no sparks.</span>
+        <span>Stories that don't stick. Ideas that don't spark.</span>
       </div>
-      <nav>
+      {/* <nav>
         <ul>
           <For each={links}>
             {(link) => (
@@ -24,7 +24,7 @@ function Header({ navItems }) {
             )}
           </For>
         </ul>
-      </nav>
+      </nav> */}
     </header>
   );
 }

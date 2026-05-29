@@ -24,20 +24,22 @@ function Main(params) {
   return (
     <>
       <div className="introduction">
+        <img src="/favicon.png" width="500" />
         <div>
-          <span>Hello There and welcome to <b>medzair.com</b></span>
-          <span>
-           Programming. Networking and Computer Science.<br/>
-           I write about the technical "deep" dives that comes with a warning label: <b>Use at your own discretion. I'm not liable for the borken code, server crashing.</b>
-           </span>
-         <span>
-          Anyway, Have fun reading these blogs 😀
-         </span>
+          <h3>Welcome to ~/medzair.com</h3>
+          <p>
+            Welcome to my blog website, where I share articles, tutorials, and
+            experiences about programming and networking. I hope you find this
+            website usefull in your journey. 
+            <b>
+              Use at your own discretion. I'm not liable for the borken code or
+              server crashing :)
+            </b>
+          </p>
+
+          <p>Anyway, Have fun reading these blogs</p>
         </div>
 
-        <ul>
-          <SocialMediaComponent socialMedias={socialMedias} />
-        </ul>
       </div>
       <Blogs />
     </>
@@ -63,8 +65,8 @@ function Blogs(params) {
   );
 
   return (
-    <Card title="Blogs list : ">
-      <ul>
+    <>
+      <ul className="blogs-list">
         <ResourceArray
           resources={blogs}
           RenderItem={(resource) => (
@@ -72,7 +74,7 @@ function Blogs(params) {
           )}
         />
       </ul>
-    </Card>
+    </>
   );
 }
 

@@ -29,10 +29,14 @@ Blog.create = (blog) => {
   if (!blog.content || blog.content == "")
     throw new CustomError("BAD_REQUEST", "content is messing");
 
+  blog.tags = blog.tags.split(/\s*,\s*/);
+  // if (!blog.readTime.contain("min"))
+  blog.readTime = blog.readTime + " mins";
+
   const blogJson = JSON.stringify(
     { ...blog, id, date: getCurrentDay(), viewCount: 0 },
     null,
-    2
+    2,
   );
 
   FileSystem.writeFileSync(`${env.BLOGS_FOLDER}/${id}.json`, blogJson, "utf-8");
@@ -45,7 +49,7 @@ Blog.getOne = (id) => {
 
   const blogData = FileSystem.readFileSync(
     `${env.BLOGS_FOLDER}/${id}.json`,
-    "utf-8"
+    "utf-8",
   );
   const blog = JSON.parse(blogData);
   return blog;
@@ -59,10 +63,8 @@ Blog.getAll = () => {
     const blogData = FileSystem.readFileSync(`${env.BLOGS_FOLDER}/${blogFile}`);
     const blog = JSON.parse(blogData);
     blogs.push({
-      title: blog.title,
-      date: blog.date,
-      id: blog.id,
-      viewCount: blog.viewCount,
+      ...blog,
+      content: undefined,
     });
   }
   return blogs;
@@ -95,7 +97,7 @@ Blog.view = (id) => {
 
   const blogData = FileSystem.readFileSync(
     `${env.BLOGS_FOLDER}/${id}.json`,
-    "utf-8"
+    "utf-8",
   );
   const blog = JSON.parse(blogData);
 
@@ -110,7 +112,7 @@ Blog.view = (id) => {
 
   FileSystem.writeFileSync(
     `${env.BLOGS_FOLDER}/${id}.json`,
-    JSON.stringify(blog, null, 2)
+    JSON.stringify(blog, null, 2),
   );
 
   return true;

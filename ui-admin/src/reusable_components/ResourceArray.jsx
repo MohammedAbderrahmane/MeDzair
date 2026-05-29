@@ -5,6 +5,7 @@ function ResourceArray({
   RenderItem,
   LoadingIndicator,
   ErrorDisplay,
+  EmptyDisplay = <p>empty resource</p>,
 }) {
   return (
     <Switch>
@@ -18,7 +19,7 @@ function ResourceArray({
         {!!resources().length ? (
           <For each={resources()}>{(resource) => RenderItem(resource)}</For>
         ) : (
-          <p>No resource found</p>
+          EmptyDisplay
         )}
       </Match>
     </Switch>
