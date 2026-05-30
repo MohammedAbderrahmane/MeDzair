@@ -1,7 +1,7 @@
 import FileSystem from "fs";
 import env from "../helpers/config.js";
 import os from "os";
-import { toMB_KB, getCpuUsagePercent } from "../helpers/helpers.js";
+import { toMB_KB } from "../helpers/helpers.js";
 
 const Stats = {
     getGeneralStats: () => { },

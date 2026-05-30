@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "./scripts/dev-script.sh",
     "start": "NODE_ENV=production node index.js",
+    "start:admin": "NODE_ENV=production_admin node index.js",
     "test": "NODE_ENV=testing node --test",
     "build:all": "./scripts/build-script.sh",
     "install:all": "./scripts/install-script.sh"

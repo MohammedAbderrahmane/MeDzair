@@ -44,17 +44,23 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(express.static(path.join(__dirname, "dist-ui-client")));
 app.use(express.static(path.join(__dirname, env.IMAGES_FOLDER)));
 
 app.get(`${env.IMAGES_FOLDER}/*`, (request, response) => {
   response.sendFile(request.url);
 });
 
-app.get("/*", (request, response) => {
-  response.sendFile(path.join(__dirname, "dist-ui-client/index.html"));
-});
-
+if (env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "dist-ui-client")));
+  app.get("/*", (request, response) => {
+    response.sendFile(path.join(__dirname, "dist-ui-client/index.html"));
+  });
+} else if (env.NODE_ENV === "production_admin") {
+  app.use(express.static(path.join(__dirname, "dist-ui-admin")));
+  app.get("/admin/*", (request, response) => {
+    response.sendFile(path.join(__dirname, "dist-ui-admin/index.html"));
+  });
+}
 
 // -------- Error middleware
 import {
