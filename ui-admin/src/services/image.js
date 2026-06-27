@@ -5,7 +5,7 @@ const baseUrl = "/api/image";
 
 const uploadimage = async (image) => {
   try {
-    const response = await axios.post(`${baseUrl}/image`, image, Header);
+    const response = await axios.post(`${baseUrl}/`, image, Header);
     return response.data.fileName;
   } catch (error) {
     console.log(error);
