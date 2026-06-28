@@ -1,0 +1,16 @@
+
+/* Blog Editor */
+
+.ql-toolbar {
+  position: absolute;
+  bottom: -20px;
+  background-color: white;
+}
+
+.blog-editor {
+  background-color: white;
+
+  height: 500px;
+  width: 95%;
+  overflow-y: scroll;
+}

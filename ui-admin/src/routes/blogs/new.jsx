@@ -40,11 +40,6 @@ function CreateBlog(params) {
     }
   };
 
-  const handleHighlight = async (event) => {
-    event.preventDefault();
-    highlight.highlightAll();
-  };
-
   return (
     <>
       <form class="new-blog">
@@ -97,9 +92,6 @@ function CreateBlog(params) {
         />
         <Notification status={notification} />
         <div class="row-input">
-          <button class="btn" type="submit" onClick={handleHighlight}>
-            highlight code
-          </button>
           <button class="btn" type="submit" onClick={handleSubmit}>
             create a new blog
           </button>

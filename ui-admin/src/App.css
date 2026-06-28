@@ -4,8 +4,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Offside");
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Voltaire&display=swap');
 
+@import "./css/button.css";
+@import "./css/header.css";
+@import "./css/footer.css";
+@import "./css/blog_edit.css";
+
 html {
-  background-color: var(--fourthly-color);
+  background-color: var(--primary-color);
 }
 
 html,
@@ -29,11 +34,11 @@ body,
 }
 
 :root {
-  --primary-color: #2B2A2A;
+  --primary-color: #1f2c4f;
+  --secondary-color: #5A7ACD;
   --thirdly-color: #FEB05D;
   --fourthly-color: #F5F2F2;
   --active-color: #e8d4f5;
-  --secondary-color: #5A7ACD;
 }
 
 #root {
@@ -44,42 +49,7 @@ body,
 
 footer {
   justify-self: end;
-}
-
-/* Header */
-
-
-header {
-  padding-block: 20px;
-  padding-inline: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* width: 100%; */
-  background-color: var(--secondary-color);
-  /* justify-content: space-around; */
-}
-
-header>div {
-  /* margin-block: 30px; */
-  /* margin-inline: 20px; */
-  text-align: center;
-  color: var(--primary-color);
-
-}
-
-header>div>h1 {
-  margin: 0;
-}
-
-header>div>h1>a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-header>div>h1>a:hover {
-  color: var(--fourthly-color);
-  text-decoration: none;
+  background-color: var(--fourthly-color);
 }
 
 nav {
@@ -110,37 +80,6 @@ nav>ul>li>a:hover {
   color: var(--fourthly-color);
 }
 
-/* Blog list */
-
-.blogs-list {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 20px;
-  flex: 1;
-  border: solid var(--secondary-color) 5px;
-  border-radius: 5px;
-
-}
-
-.blogs-list legend {
-  font-size: 1.5rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: bold;
-  padding-inline: 25px;
-}
-
-
-.empty-list {
-  justify-self: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* Blog card */
 
 .blog-card {
@@ -148,7 +87,7 @@ nav>ul>li>a:hover {
   flex-direction: column;
   list-style: none;
   margin-bottom: 10px;
-  width: 200px;
+  width: 300px;
   /* padding: 20px; */
   border-radius: 15px;
   background-color: wheat;
@@ -161,7 +100,6 @@ nav>ul>li>a:hover {
   border-radius: 16px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
   overflow: hidden;
-  width: 220px;
   cursor: pointer;
   transition: box-shadow 0.2s;
   align-self: baseline;
@@ -245,101 +183,7 @@ nav>ul>li {
   gap: 10%;
 }
 
-/* Buttons : Normal */
-
-.btn {
-  background-color: rgb(49, 49, 83);
-  width: fit-content;
-  height: 45px;
-  border: none;
-  border-radius: 5px;
-  padding: 0px 15px;
-  color: wheat;
-  font-size: small;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: rgb(58, 58, 94);
-}
-
-.btn:active {
-  transform: scale(0.95);
-}
-
-.btn-wide {
-  width: 100%;
-  padding-inline: 20px;
-}
-
-/* Buttons : <A> */
-
-.btn-anchor {
-  color: rgb(49, 49, 83);
-  background: none;
-  width: fit-content;
-  border: none;
-  padding: 0px 15px;
-  font-size: large;
-  cursor: pointer;
-}
-
-.btn-anchor:hover {
-  color: var(--fourthly-color);
-}
-
-.btn-anchor:active {
-  transform: scale(0.95);
-}
-
 /* Anchor */
-.menu-list {
-  display: flex;
-}
-
-.menu-list>li>a,
-.menu-list>li>button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.anchor {
-  color: rgb(49, 49, 83);
-  background: none;
-  width: fit-content;
-  border: none;
-  padding: 0px 15px;
-  font-size: large;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.anchor:hover {
-  olor: var(--fourthly-color);
-  background: none;
-  width: fit-content;
-  border: none;
-  padding: 0px 15px;
-  font-size: large;
-  cursor: pointer;
-}
-
-.anchor svg path,
-.btn-anchor:hover svg path {
-  fill: var(--primary-color);
-}
-
-.anchor:hover svg path,
-.btn-anchor:hover svg path {
-  fill: var(--fourthly-color);
-}
-
-
-.anchor:active {
-  font-size: 0.9rem;
-}
 
 /* NEW BLOG */
 
@@ -391,22 +235,6 @@ nav>ul>li {
   margin-top: 0px;
 }
 
-/* Blog Editor */
-
-.ql-toolbar {
-  position: absolute;
-  bottom: -20px;
-  background-color: white;
-}
-
-.blog-editor {
-  background-color: white;
-
-  height: 500px;
-  width: 95%;
-  overflow-y: scroll;
-  margin-bottom: 50px;
-}
 
 /* ... */
 
@@ -418,7 +246,9 @@ nav>ul>li {
   padding-top: 20px;
   padding-inline: 20px;
   flex: 1;
-
+  background-color: var(--fourthly-color);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 /* Blog Page */
@@ -523,58 +353,6 @@ nav>ul>li {
   font-size: 15px;
 }
 
-/* Auth */
-.login-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: wheat;
-  width: 70%;
-  padding: 20px;
-  padding-bottom: 60px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.login-page>form {
-  width: 70%;
-}
-
-.login-page>form>label {
-  display: block;
-  text-align: start;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.login-page input[type="text"],
-.login-page input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.remember-me-div {
-  text-align: start;
-  margin-bottom: 10px;
-}
-
-.remember-me-div input {
-  display: inline;
-  margin-right: 5px;
-  vertical-align: middle;
-  position: relative;
-  bottom: 1px;
-}
-
-.remember-me-div>label {
-  display: inline;
-  cursor: pointer;
-}
-
 /* Profile */
 
 .profile-page {
@@ -669,7 +447,7 @@ legend {
 }
 
 .blog-card__title {
-    font-style: italic;
+  font-style: italic;
 
   font-size: 22px;
   font-weight: 700;
@@ -714,9 +492,6 @@ legend {
   transition: all 2500ms;
 }
 
-.blog-card .btn-anchor:hover {
-  color: var(--secondary-color);
-}
 
 .fields {
   padding-inline: 30px;
@@ -741,7 +516,7 @@ legend {
   flex: 1;
   font-family: "Raleway", sans-serif;
   font-weight: bold;
-      display: flex;
+  display: flex;
   align-items: center;
   justify-content: flex-end;
 }
@@ -749,8 +524,8 @@ legend {
 .row-input input,
 .row-input textarea {
   display: flex;
-    font-family: "Voltaire", sans-serif;
-    font-size: large;
+  font-family: "Voltaire", sans-serif;
+  font-size: large;
   flex: 4;
   width: 100%;
   border-radius: 5px;

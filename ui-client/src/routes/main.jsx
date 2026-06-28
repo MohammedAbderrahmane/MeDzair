@@ -7,7 +7,6 @@ import BlogService from "../services/blog";
 import Card from "../reusable_components/Card";
 
 function Main(params) {
-
   const socialMedias = [
     {
       name: "github",
@@ -24,22 +23,20 @@ function Main(params) {
   return (
     <>
       <div className="introduction">
-        <img src="/favicon.png" width="500" />
+        <img src="/favicon.png" width="1000" />
         <div>
           <h3>Welcome to ~/medzair.com</h3>
           <p>
-            Welcome to my blog website, where I share articles, tutorials, and
-            experiences about programming and networking. I hope you find this
-            website usefull in your journey. 
+            A blog about programming and networking — what I'm learning,
+            building, and occasionally breaking. Expect tutorials, write-ups
+            from real projects, and the odd networking ""deep""-dive <br/>
             <b>
-              Use at your own discretion. I'm not liable for the borken code or
-              server crashing :)
+             Code samples are provided as-is. If something crashes your server, that's between you and it :)
             </b>
           </p>
 
-          <p>Anyway, Have fun reading these blogs</p>
+          <p>Anyway, Have fun reading</p>
         </div>
-
       </div>
       <Blogs />
     </>
@@ -61,7 +58,7 @@ function SocialMediaComponent({ socialMedias }) {
 
 function Blogs(params) {
   const [blogs, { mutate }] = createResource(
-    async () => await BlogService.getAll()
+    async () => await BlogService.getAll(),
   );
 
   return (

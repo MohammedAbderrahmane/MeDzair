@@ -1,0 +1,94 @@
+/* Profile */
+
+.profile-page {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  padding-bottom: 40px;
+}
+
+.profile-page > h2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin: 0 0 20px;
+  text-align: start;
+}
+
+.profile-page > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-page fieldset {
+  background: var(--fourthly-color);
+  border: 1px solid rgba(43, 42, 42, 0.1);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 0;
+}
+
+.profile-page legend {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary-color);
+  padding: 0 6px;
+}
+
+.profile-page > form label,
+.profile-page .blocks-form label {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  text-align: start;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.profile-page > form input,
+.profile-page .blocks-form input {
+  width: 100%;
+  font-family: "Voltaire", sans-serif;
+  font-size: 1rem;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #fff;
+  color: var(--primary-color);
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.profile-page > form input:focus,
+.profile-page .blocks-form input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(90, 122, 205, 0.2);
+}
+
+.profile-page > form input:disabled {
+  background: rgba(43, 42, 42, 0.04);
+  border-color: transparent;
+  color: var(--primary-color);
+  cursor: default;
+  opacity: 1;
+}
+
+.profile-page .row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 4px;
+}

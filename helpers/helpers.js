@@ -22,7 +22,7 @@ const fileExists = (filePath) => {
   }
 };
 
-const getCurrentDay = () => new Date().toLocaleString().slice(0, 9);
+const getCurrentDay = () => new Date().toLocaleString().slice(0, 10);
 
 const getExactCurrentTime = () => new Date().toLocaleString().replace(",", "");
 

@@ -1,0 +1,104 @@
+/* Header */
+
+
+header {
+    position: relative;
+    padding-block: 20px;
+    padding-inline: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 100%; */
+    background-color: var(--primary-color);
+    color: var(--fourthly-color) !important;
+    /* justify-content: space-around; */
+}
+
+.auth-panel__grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+header span {
+    color: var(--fourthly-color);
+}
+
+header b {
+    color: var(--thirdly-color);
+}
+header>div {
+    /* margin-block: 30px; */
+    /* margin-inline: 20px; */
+    text-align: center;
+    color: var(--primary-color);
+
+}
+
+header>div>h1 {
+    margin: 0;
+}
+
+header>div>h1>a {
+    color: var(--thirdly-color);
+    text-decoration: none;
+}
+
+.anchor:hover,
+header>div>h1>a:hover {
+    color: var(--fourthly-color);
+    text-decoration: none;
+}
+
+.menu-list {
+    display: flex;
+    color: white;
+}
+
+.menu-list .anchor,
+.menu-list svg {
+    color: var(--thirdly-color);
+}
+
+.menu-list>li>a,
+.btn-anchor,
+.menu-list>li>button {
+    font-size: large;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.anchor svg path,
+.btn-anchor svg path {
+    fill: var(--thirdly-color);
+}
+
+.anchor:hover svg path,
+.btn-anchor:hover svg path {
+    fill: var(--fourthly-color);
+}
+
+/* Buttons : <A> */
+
+.btn-anchor {
+    color: var(--thirdly-color);
+    background: none;
+    width: fit-content;
+    border: none;
+    padding: 0px 15px;
+    font-size: large;
+    cursor: pointer;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+}
+
+.btn-anchor:hover {
+    color: var(--fourthly-color);
+}
+
+.btn-anchor:active {
+    transform: scale(0.95);
+}

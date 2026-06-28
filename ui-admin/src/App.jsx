@@ -1,21 +1,20 @@
 import { Router, Route } from "@solidjs/router";
 import { createEffect, useContext } from "solid-js";
 
-import BlogService from "./services/blog.js";
 import AuthService from "./services/auth.js";
 
 import Blog from "./routes/blogs/[id]";
 import CreateBlog from "./routes/blogs/new";
-import Main from "./routes/";
+import Main from "./routes/home/";
 import Update from "./routes/blogs/update";
-import Auth from "./routes/auth";
-import Profile from "./routes/profile";
+import Auth from "./routes/auth/auth.jsx";
+import Profile from "./routes/profile/profile";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import "./App.css";
-import "./atom-one-dark.css"
+import "./atom-one-dark.css";
 
 import UserContext from "./reusable_components/Context/user.jsx";
 import Stats from "./routes/stats.jsx";
@@ -31,7 +30,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      {user && user.username && <Header />}
       <div className="main">
         <Router>
           {user && user.username ? (
@@ -50,7 +49,7 @@ function App() {
           )}
         </Router>
       </div>
-      <Footer />
+      {user && user.username && <Footer />}
     </>
   );
 }

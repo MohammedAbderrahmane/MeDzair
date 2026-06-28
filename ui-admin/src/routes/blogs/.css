@@ -1,0 +1,43 @@
+/* New Blog page */
+
+.new-blog__heading {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--primary-color);
+  align-self: center;
+  margin-bottom: 24px;
+}
+
+.post-card {
+  width: 100%;
+  max-width: 720px;
+  border: 1px solid rgba(43, 42, 42, 0.12);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+}
+
+.post-card--editor {
+  padding-bottom: 0;
+}
+
+.cover-input {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 4;
+}
+
+.cover-input__preview {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(43, 42, 42, 0.15);
+}
+
+.post-actions {
+  align-self: center;
+  gap: 16px;
+}

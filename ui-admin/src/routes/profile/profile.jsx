@@ -1,26 +1,25 @@
 import { createResource, createSignal, useContext } from "solid-js";
-import UserContext from "../reusable_components/Context/user";
+import UserContext from "../../reusable_components/Context/user";
 import { createStore } from "solid-js/store";
-import ProfileService from "../services/profile";
-import AuthService from "../services/auth";
+import ProfileService from "../../services/profile";
+import AuthService from "../../services/auth";
 
-import useNotification from "../reusable_components/Notification/useNotification";
-import Notification from "../reusable_components/Notification";
-import Resource from "../reusable_components/Resource";
-import axios from "axios";
-import BlogService from "../services/blog.js";
+import useNotification from "../../reusable_components/Notification/useNotification";
+import Notification from "../../reusable_components/Notification";
+import Resource from "../../reusable_components/Resource";
+import "./.css";
 
 function Profile(params) {
   const [user] = useContext(UserContext);
 
   const [info, { mutate, refetch }] = createResource(
-    async () => await ProfileService.get()
+    async () => await ProfileService.get(),
   );
 
   return (
-    <div class="profile-page">
-      <h2>User Profile</h2>
-      <form class="blocks-form">
+    <>
+      <h1 className="blogs-page__title">User Profile</h1>
+      <form class="blocks-form fields">
         <Resource
           resource={info}
           RenderComponent={(resource) => (
@@ -30,7 +29,7 @@ function Profile(params) {
 
         <ChangePassword />
       </form>
-    </div>
+    </>
   );
 }
 
@@ -58,10 +57,12 @@ function Informations({ info, mutate, refetch }) {
   };
 
   return (
-    <fieldset>
-      <legend>Your informations :</legend>
-      <label for="username">Username:</label>
+    <form className="fields">
+      <label className="auth-form__label" for="username">
+        Username:
+      </label>
       <input
+        className="auth-form__input"
         type="text"
         id="username"
         value={info.username}
@@ -75,10 +76,13 @@ function Informations({ info, mutate, refetch }) {
         disabled={!isModifying()}
       />
 
-      <label for="email">Email:</label>
+      <label className="auth-form__label" for="email">
+        Email:
+      </label>
       <input
         type="email"
         id="email"
+        className="auth-form__input"
         value={info.email}
         onInput={(event) =>
           mutate((info) => {
@@ -107,7 +111,7 @@ function Informations({ info, mutate, refetch }) {
           </button>
         )}
       </div>
-    </fieldset>
+    </form>
   );
 }
 
@@ -135,8 +139,7 @@ function ChangePassword(params) {
   };
 
   return (
-    <fieldset>
-      <legend>Modifying password</legend>
+    <form className="fields">
       <button
         class="btn btn-wide"
         onClick={(event) => {
@@ -147,9 +150,12 @@ function ChangePassword(params) {
         modify password
       </button>
       {isModifyingPassword() && (
-        <div class="blocks-form">
-          <label for="password">New password:</label>
+        <>
+          <label className="auth-form__label" for="password">
+            New password:
+          </label>
           <input
+            className="auth-form__input"
             type="password"
             id="password"
             required
@@ -157,15 +163,22 @@ function ChangePassword(params) {
               setPassword("password", event.currentTarget.value)
             }
           />
-          <label for="confirm-password">Confirm password:</label>
-          <input type="password" id="confirm-password" required />
+          <label className="auth-form__label" for="confirm-password">
+            Confirm password:
+          </label>
+          <input
+            className="auth-form__input"
+            type="password"
+            id="confirm-password"
+            required
+          />
           <Notification status={notification} />
           <button class="btn btn-wide" onClick={handlePassword}>
             Save new password
           </button>
-        </div>
+        </>
       )}
-    </fieldset>
+    </form>
   );
 }
 

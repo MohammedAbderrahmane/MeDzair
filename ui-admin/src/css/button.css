@@ -1,0 +1,27 @@
+/* Buttons : Normal */
+
+.btn {
+  background-color: var(--primary-color);
+    font-family: "Raleway", sans-serif;
+  width: fit-content;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  padding: 0px 15px;
+  color: wheat;
+  font-size: small;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(58, 58, 94);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-wide {
+  width: 100%;
+  padding-inline: 20px;
+}
