@@ -10,8 +10,6 @@ import Resource from "../../reusable_components/Resource";
 import "./.css";
 
 function Profile(params) {
-  const [user] = useContext(UserContext);
-
   const [info, { mutate, refetch }] = createResource(
     async () => await ProfileService.get(),
   );
@@ -26,8 +24,6 @@ function Profile(params) {
             <Informations info={resource} mutate={mutate} refetch={refetch} />
           )}
         />
-
-        <ChangePassword />
       </form>
     </>
   );
@@ -35,7 +31,6 @@ function Profile(params) {
 
 function Informations({ info, mutate, refetch }) {
   const [user, setUser] = useContext(UserContext);
-  const [isModifying, setIsModifying] = createSignal(false);
 
   const { notification, setSuccess, setFailure, setLoading } =
     useNotification();
@@ -56,6 +51,8 @@ function Informations({ info, mutate, refetch }) {
     }
   };
 
+  console.log(notification);
+
   return (
     <form className="fields">
       <label className="auth-form__label" for="username">
@@ -73,44 +70,16 @@ function Informations({ info, mutate, refetch }) {
           })
         }
         required
-        disabled={!isModifying()}
       />
 
-      <label className="auth-form__label" for="email">
-        Email:
-      </label>
-      <input
-        type="email"
-        id="email"
-        className="auth-form__input"
-        value={info.email}
-        onInput={(event) =>
-          mutate((info) => {
-            info.email = event.currentTarget.value;
-            return info;
-          })
-        }
-        required
-        disabled={!isModifying()}
-      />
       <Notification status={notification} />
 
       <div class="row">
-        <button
-          class={!isModifying() ? "btn btn-wide" : "btn "}
-          onClick={(event) => {
-            event.preventDefault();
-            setIsModifying(!isModifying());
-          }}
-        >
-          Update Profile
+        <button class="btn btn-wide" type="submit" onClick={handleUpadteInfo}>
+          save modifications
         </button>
-        {isModifying() && (
-          <button class="btn" type="submit" onClick={handleUpadteInfo}>
-            save modifications
-          </button>
-        )}
       </div>
+      <ChangePassword />
     </form>
   );
 }
@@ -125,8 +94,6 @@ function ChangePassword(params) {
   const { notification, setSuccess, setFailure, setLoading } =
     useNotification();
 
-  const [isModifyingPassword, setIsModifyingPassword] = createSignal(false);
-
   const handlePassword = async (event) => {
     event.preventDefault();
     setLoading();
@@ -139,46 +106,31 @@ function ChangePassword(params) {
   };
 
   return (
-    <form className="fields">
-      <button
-        class="btn btn-wide"
-        onClick={(event) => {
-          event.preventDefault();
-          setIsModifyingPassword(!isModifyingPassword());
-        }}
-      >
-        modify password
+    <>
+      <label className="auth-form__label" for="password">
+        New password:
+      </label>
+      <input
+        className="auth-form__input"
+        type="password"
+        id="password"
+        required
+        onInput={(event) => setPassword("password", event.currentTarget.value)}
+      />
+      <label className="auth-form__label" for="confirm-password">
+        Confirm password:
+      </label>
+      <input
+        className="auth-form__input"
+        type="password"
+        id="confirm-password"
+        required
+      />
+      <Notification status={notification} />
+      <button class="btn btn-wide" onClick={handlePassword}>
+        Save new password
       </button>
-      {isModifyingPassword() && (
-        <>
-          <label className="auth-form__label" for="password">
-            New password:
-          </label>
-          <input
-            className="auth-form__input"
-            type="password"
-            id="password"
-            required
-            onInput={(event) =>
-              setPassword("password", event.currentTarget.value)
-            }
-          />
-          <label className="auth-form__label" for="confirm-password">
-            Confirm password:
-          </label>
-          <input
-            className="auth-form__input"
-            type="password"
-            id="confirm-password"
-            required
-          />
-          <Notification status={notification} />
-          <button class="btn btn-wide" onClick={handlePassword}>
-            Save new password
-          </button>
-        </>
-      )}
-    </form>
+    </>
   );
 }
 

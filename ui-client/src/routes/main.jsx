@@ -23,7 +23,7 @@ function Main(params) {
   return (
     <>
       <div className="introduction">
-        <img src="/favicon.png" width="1000" />
+        <img src="/favicon2.png" width="1000" />
         <div>
           <h3>Welcome to ~/medzair.com</h3>
           <p>

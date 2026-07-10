@@ -12,7 +12,7 @@ router.use("/", express.static(env.IMAGES_FOLDER));
 router.post("/", async (request, response) => {
   const files = request.files;
 
-  const fileName = Image.create(files);
+  const fileName = await Image.create(files);
 
   response.status(SuccessTypes.Created).send({ fileName });
 });

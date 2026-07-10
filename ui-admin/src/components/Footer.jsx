@@ -13,25 +13,6 @@ function Footer(params) {
             posts.
           </p>
         </div>
-
-        <div class="site-footer__columns">
-          <For each={columns}>
-            {(column) => (
-              <div class="site-footer__column">
-                <h3 class="site-footer__column-title">{column.title}</h3>
-                <ul class="site-footer__links">
-                  <For each={column.links}>
-                    {(link) => (
-                      <li>
-                        <a href={link.href}>{link.name}</a>
-                      </li>
-                    )}
-                  </For>
-                </ul>
-              </div>
-            )}
-          </For>
-        </div>
       </div>
 
       <div class="site-footer__bottom">
