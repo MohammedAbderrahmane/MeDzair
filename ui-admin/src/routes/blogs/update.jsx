@@ -12,7 +12,7 @@ function Update(params) {
   const { id } = useParams();
 
   const [blog, { mutate }] = createResource(
-    async () => await BlogService.getOne(id)
+    async () => await BlogService.getOne(id),
   );
 
   return (
@@ -24,7 +24,6 @@ function Update(params) {
     />
   );
 }
-
 function UpdateComponent({ blog, mutate }) {
   const { notification, setSuccess, setFailure, setLoading } =
     useNotification();
@@ -43,18 +42,78 @@ function UpdateComponent({ blog, mutate }) {
   return (
     <>
       <form class="new-blog">
-        <h1>Updating a blog</h1>
-        <input
-          type="text"
-          placeholder="A proper updated title..."
-          value={blog.title}
-          onInput={(event) =>
-            mutate((blog) => {
-              blog.additionTitle = event.currentTarget.value;
-              return blog;
-            })
-          }
-        />
+        <div className="fields">
+          <div className="row-input">
+            <label>Title</label>
+            <input
+              type="text"
+              placeholder="A proper title"
+              value={blog.title}
+              onInput={(e) =>
+                mutate((blog) => {
+                  blog.title = e.currentTarget.value;
+                  return blog;
+                })
+              }
+            />
+          </div>
+          <div className="row-input">
+            <label>subTitle</label>
+            <textarea
+              type="text"
+              value={blog.subTitle}
+              placeholder="A proper subtitle or a description"
+              onInput={(e) =>
+                mutate((blog) => {
+                  blog.subTitle = e.currentTarget.value;
+                  return blog;
+                })
+              }
+            />
+          </div>
+          <div className="row-input">
+            <label>tags </label>
+            <textarea
+              type="text"
+              value={blog.tags.join(" , ")}
+              placeholder="tags included in this post (split them with ,)"
+              onInput={(e) =>
+                mutate((blog) => {
+                  blog.tags = e.currentTarget.value;
+                  return blog;
+                })
+              }
+            />
+          </div>
+          <div className="row-input">
+            <label>Read time (mins)</label>
+            <input
+              type="text"
+              value={blog.readTime.replace(/\s*min\./,"")}
+              placeholder="time required to read the post"
+              onInput={(e) =>
+                mutate((blog) => {
+                  blog.readTime = e.currentTarget.value;
+                  return blog;
+                })
+              }
+            />
+          </div>
+          <div className="row-input">
+            <label>cover image</label>
+            <input
+              type="file"
+              placeholder="A proper title"
+              onInput={(e) =>
+                mutate((blog) => {
+                  blog.coverImage = e.currentTarget.files[0];
+                  return blog;
+                })
+              }
+            />
+          </div>
+        </div>
+
         <TextEditor
           placeholder="The content of a new blog"
           initialValue={blog.content}

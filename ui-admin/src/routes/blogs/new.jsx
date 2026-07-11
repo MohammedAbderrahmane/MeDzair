@@ -16,7 +16,6 @@ function CreateBlog(params) {
     readTime: "",
     tags: "",
     content: "",
-    content: "",
   });
 
   const { notification, setSuccess, setFailure, setLoading } =

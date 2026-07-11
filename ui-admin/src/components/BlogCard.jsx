@@ -28,7 +28,7 @@ function BlogCard({
 
   return (
     <li class="blog-card">
-      <a href={`/blogs/${blog.id}`}>
+      <a href={`/admin/blogs/${blog.id}`}>
         {blog.coverImageURL ? (
           <img className="blog-card__image" src={blog.coverImageURL} />
         ) : (

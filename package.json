@@ -5,11 +5,11 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "./scripts/dev-script.sh",
+    "dev": "node scripts/install-script.js",
     "start": "NODE_ENV=production node index.js",
     "start:admin": "NODE_ENV=production_admin node index.js",
     "test": "NODE_ENV=testing node --test",
-    "build:all": "./scripts/build-script.sh",
+    "build": "node ./scripts/build-script.js",
     "install:all": "./scripts/install-script.sh"
   },
   "author": "",

@@ -32,7 +32,7 @@ function App() {
     <>
       {user && user.username && <Header />}
       <div className="main">
-        <Router>
+        <Router base="/admin">
           {user && user.username ? (
             <>
               <Route path="/" component={Main} />

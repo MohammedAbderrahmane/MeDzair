@@ -23,7 +23,7 @@ function Header({ navItems }) {
     },
     {
       name: "new blog",
-      href: "/blogs/new",
+      href: "/admin/blogs/new",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ function Header({ navItems }) {
     },
     {
       name: "stats",
-      href: "/stats",
+      href: "/admin/stats",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ function Header({ navItems }) {
           </For>
           <Show when={user.username}>
             <li>
-              <a class="anchor" href="/profile">
+              <a class="anchor" href="/admin/profile">
                 profile
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

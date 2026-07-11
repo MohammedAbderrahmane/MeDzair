@@ -20,7 +20,7 @@ function Blog(params) {
 
 function BlogPage({ blog }) {  
   const handleUpdate = () => {
-    window.location.href = `/blogs/update/${blog.id}`;
+    window.location.href = `/admin/blogs/update/${blog.id}`;
   };
   
   const navigate = useNavigate();

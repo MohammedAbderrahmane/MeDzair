@@ -45,14 +45,16 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 if (env.NODE_ENV === "production") {
+  // Admin UI — must come first, and be scoped to /admin
+  app.use("/admin", express.static(path.join(__dirname, "dist-ui-admin")));
+  app.get("/admin/*", (request, response) => {
+    response.sendFile(path.join(__dirname, "dist-ui-admin/index.html"));
+  });
+
+  // Client UI — catch-all, must come last
   app.use(express.static(path.join(__dirname, "dist-ui-client")));
   app.get("/*", (request, response) => {
     response.sendFile(path.join(__dirname, "dist-ui-client/index.html"));
-  });
-
-  app.use(express.static(path.join(__dirname, "dist-ui-admin")));
-  app.get("/admin/*", (request, response) => {
-    response.sendFile(path.join(__dirname, "dist-ui-admin/index.html"));
   });
 }
 
