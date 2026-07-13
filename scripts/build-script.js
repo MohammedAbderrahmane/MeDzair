@@ -5,7 +5,8 @@ import { execSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const rootDir = path.dirname(fileURLToPath(import.meta.url));
+// __dirname here is /scripts — go up one level to reach the actual project root
+const rootDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const run = (command, cwd) => {
   console.log(`> ${command} (in ${cwd})`);
