@@ -39,7 +39,7 @@ function UpdateComponent({ blog, mutate }) {
 
       await BlogService.update(blog.id, {
         ...blog,
-        coverImageURL: `/api/image/${imageURL}`,
+        coverImageURL: imageURL,
       });
       setSuccess("Suceess");
     } catch (error) {

@@ -31,7 +31,7 @@ function CreateBlog(params) {
 
       await BlogService.add({
         ...blog,
-        coverImageURL: `/api/image/${imageURL}`,
+        coverImageURL: imageURL,
       });
       setSuccess("Suceess");
     } catch (error) {
@@ -45,11 +45,11 @@ function CreateBlog(params) {
         <div className="fields">
           <div className="row-input">
             <label>Title</label>
-        <input
-          type="text"
-          placeholder="A proper title"
-          onInput={(e) => setBlog("title", e.currentTarget.value)}
-        />
+            <input
+              type="text"
+              placeholder="A proper title"
+              onInput={(e) => setBlog("title", e.currentTarget.value)}
+            />
           </div>
           <div className="row-input">
             <label>subTitle</label>
