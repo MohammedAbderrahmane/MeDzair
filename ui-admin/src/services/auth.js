@@ -37,7 +37,7 @@ const connect = (setUser, user) => {
 const disconnect = (setUser) => {
   window.localStorage.removeItem("user");
   setUser(null);
-  window.location.href = "/auth";
+  window.location.href = "/admin/auth";
 };
 
 export default { login, verifySession, connect, disconnect };

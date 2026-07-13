@@ -31,7 +31,7 @@ function CreateBlog(params) {
 
       await BlogService.add({
         ...blog,
-        coverImageURL: `http://localhost:3000${imageURL}`,
+        coverImageURL: `/api/image/${imageURL}`,
       });
       setSuccess("Suceess");
     } catch (error) {

@@ -7,6 +7,7 @@ import Notification from "../../reusable_components/Notification";
 import useNotification from "../../reusable_components/Notification/useNotification.js";
 
 import BlogService from "../../services/blog";
+import ImageService from "../../services/image";
 
 function Update(params) {
   const { id } = useParams();
@@ -32,7 +33,14 @@ function UpdateComponent({ blog, mutate }) {
     event.preventDefault();
     setLoading();
     try {
-      await BlogService.update(blog.id, blog);
+      const formData = new FormData();
+      formData.append("image", blog.coverImage);
+      const imageURL = await ImageService.uploadimage(formData);
+
+      await BlogService.update(blog.id, {
+        ...blog,
+        coverImageURL: `/api/image/${imageURL}`,
+      });
       setSuccess("Suceess");
     } catch (error) {
       setFailure(error.message);
@@ -89,7 +97,7 @@ function UpdateComponent({ blog, mutate }) {
             <label>Read time (mins)</label>
             <input
               type="text"
-              value={blog.readTime.replace(/\s*min\./,"")}
+              value={blog.readTime.replace(/\s*min\./, "")}
               placeholder="time required to read the post"
               onInput={(e) =>
                 mutate((blog) => {

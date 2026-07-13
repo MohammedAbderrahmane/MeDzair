@@ -30,8 +30,9 @@ Blog.create = (blog) => {
     throw new CustomError("BAD_REQUEST", "content is messing");
 
   blog.tags = blog.tags.split(/\s*,\s*/);
-  // if (!blog.readTime.contain("min"))
-  blog.readTime = blog.readTime + " mins";
+  if (!blog.readTime?.includes("min")) {
+    blog.readTime = `${blog.readTime} mins`;
+  }
 
   const blogJson = JSON.stringify(
     { ...blog, id, date: getCurrentDay(), viewCount: 0 },
@@ -84,6 +85,10 @@ Blog.update = (id, blog) => {
   if (!hasAllAttributes(blog, ["date", "title", "content"]))
     throw new CustomError("BAD_REQUEST", "Blog messing atributes");
 
+  blog.tags = blog.tags.split(/\s*,\s*/);
+  if (!blog.readTime?.includes("min")) {
+    blog.readTime = `${blog.readTime} mins`;
+  }
   blog.updateDate = blog.updateDate || getCurrentDay();
   const blogJson = JSON.stringify({ ...blog, id }, null, 2);
 

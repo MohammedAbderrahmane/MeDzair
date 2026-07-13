@@ -9,7 +9,7 @@ function Header({ navItems }) {
   const links = navItems || [
     {
       name: "home",
-      href: "/",
+      href: "/admin",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ function Header({ navItems }) {
     <header>
       <div>
         <h1 className="tiny5-regular">
-          <a href="/">~/admin.medzair.com</a>
+          <a href="/admin">~/admin.medzair.com</a>
         </h1>
         <span>
           Welcome <b>{user.username}</b> to the Dashboard
