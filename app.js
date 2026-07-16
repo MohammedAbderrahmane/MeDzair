@@ -6,6 +6,13 @@ import { exit } from "process";
 import express from "express";
 import "express-async-errors";
 import cors from "cors";
+import {
+  isCrawler,
+  renderBlogHtml,
+  renderMainHtml,
+} from "./helpers/crawler.js";
+import { toISODate } from "./helpers/helpers.js";
+import Blog from "./models/Blog.js";
 
 try {
   init();
@@ -50,6 +57,59 @@ if (env.NODE_ENV === "production") {
   app.use("/admin", express.static(path.join(__dirname, "dist-ui-admin")));
   app.get("/admin/*", (request, response) => {
     response.sendFile(path.join(__dirname, "dist-ui-admin/index.html"));
+  });
+
+  // Client UI — catch-all, must come last
+  // --- Prerender the home page, crawlers only ---
+  app.get("/", (request, response, next) => {
+    const userAgent = request.get("user-agent") || "";
+    if (!isCrawler(userAgent)) return next();
+
+    try {
+      const blogs = Blog.getAll();
+      const baseUrl = `${request.protocol}://${request.get("host")}`;
+      response.status(200).send(renderMainHtml(blogs, baseUrl));
+    } catch (error) {
+      console.log(error);
+
+      next();
+    }
+  });
+
+  app.get("/sitemap.xml", (request, response) => {
+    const blogs = Blog.getAll();
+    const baseUrl = `${request.protocol}://${request.get("host")}`;
+
+    const urls = [
+      `<url><loc>${baseUrl}/</loc><changefreq>daily</changefreq></url>`,
+      ...blogs.map(
+        (blog) =>
+          `<url><loc>${baseUrl}/blogs/${blog.id}</loc><lastmod>${toISODate(blog.updateDate || blog.date)}</lastmod></url>`,
+      ),
+    ].join("\n");
+
+    response.type("application/xml").send(
+      `<?xml version="1.0" encoding="UTF-8"?>
+       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        ${urls}
+       </urlset>`,
+    );
+  });
+
+  // --- Prerender single blog pages, crawlers only ---
+  app.get("/blogs/:id", (request, response, next) => {
+    const userAgent = request.get("user-agent") || "";
+    if (!isCrawler(userAgent)) return next();
+
+    try {
+      const blog = Blog.getOne(request.params.id);
+      const baseUrl = `${request.protocol}://${request.get("host")}`;
+      response.status(200).send(renderBlogHtml(blog, baseUrl));
+    } catch (error) {
+      console.log(error);
+
+      next();
+    }
   });
 
   // Client UI — catch-all, must come last

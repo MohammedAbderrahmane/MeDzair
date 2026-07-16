@@ -52,6 +52,20 @@ const toMB_KB = (bytes) => {
   return "-1 B"
 }
 
+const toISODate = (dateStr) => {
+  if (!dateStr) return undefined;
+
+  if (/^\d{4}-\d{2}-\d{2}/.test(dateStr)) return dateStr.slice(0, 10);
+
+  const match = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (match) {
+    const [, day, month, year] = match;
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
+
+  return undefined;
+};
+
 export {
   hasAllAttributes,
   CustomError,
@@ -62,4 +76,5 @@ export {
   getExactCurrentTime,
   toBase64,
   toMB_KB,
+  toISODate
 };

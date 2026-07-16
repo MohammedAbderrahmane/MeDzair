@@ -53,7 +53,7 @@ morgan.token("presponse-time", function (req, res) {
 
 morgan.token("plength", (req, res) => {
   const length = res.getHeader("content-length");
-  return (length ? `${length}B` : "0B").padEnd(8, " ");
+  return (length ? `${length/8}B` : "0B").padEnd(8, " ");
 });
 
 morgan.token("pip", (req) => {

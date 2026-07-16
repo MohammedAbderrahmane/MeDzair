@@ -269,6 +269,7 @@ footer {
   .introduction img {
     width: 96px;
     height: 96px;
+    align-self: center;
   }
 
   .introduction div h3 {
