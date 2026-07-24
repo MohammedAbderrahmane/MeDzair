@@ -11,21 +11,27 @@ import ImageService from "../../services/image";
 
 function Update(params) {
   const { id } = useParams();
-
-  const [blog, { mutate }] = createResource(
-    async () => await BlogService.getOne(id),
-  );
+  let initialCoverImage;
+  const [blog, { mutate }] = createResource(async () => {
+    const blog = await BlogService.getOne(id);
+    initialCoverImage = blog.coverImageURL;
+    return blog;
+  });
 
   return (
     <Resource
       resource={blog}
       RenderComponent={(resource) => (
-        <UpdateComponent blog={resource} mutate={mutate} />
+        <UpdateComponent
+          blog={resource}
+          mutate={mutate}
+          initialCoverImage={initialCoverImage}
+        />
       )}
     />
   );
 }
-function UpdateComponent({ blog, mutate }) {
+function UpdateComponent({ blog, mutate, initialCoverImage }) {
   const { notification, setSuccess, setFailure, setLoading } =
     useNotification();
 
@@ -33,9 +39,12 @@ function UpdateComponent({ blog, mutate }) {
     event.preventDefault();
     setLoading();
     try {
-      const formData = new FormData();
-      formData.append("image", blog.coverImage);
-      const imageURL = await ImageService.uploadimage(formData);
+      let imageURL = blog.coverImageURL;
+      if (blog.coverImageURL != initialCoverImage) {
+        const formData = new FormData();
+        formData.append("image", blog.coverImage);
+        imageURL = await ImageService.uploadimage(formData);
+      }
 
       await BlogService.update(blog.id, {
         ...blog,
@@ -108,12 +117,18 @@ function UpdateComponent({ blog, mutate }) {
             />
           </div>
           <div className="row-input">
-            <label>cover image</label>
+            <label>
+              cover image
+              <span style={{ "font-size": "small" }}>
+                {blog.coverImageURL}
+              </span>
+            </label>
             <input
               type="file"
               placeholder="A proper title"
               onInput={(e) =>
                 mutate((blog) => {
+                  blog.coverImageURL = "";
                   blog.coverImage = e.currentTarget.files[0];
                   return blog;
                 })

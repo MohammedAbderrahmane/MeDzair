@@ -85,9 +85,12 @@ Blog.update = (id, blog) => {
   if (!hasAllAttributes(blog, ["date", "title", "content"]))
     throw new CustomError("BAD_REQUEST", "Blog messing atributes");
 
-  blog.tags = blog.tags.split(/\s*,\s*/);
+  if (!Array.isArray(blog.tags)) {
+    blog.tags = blog.tags.split(/\s*,\s*/);
+  }
   if (!blog.readTime?.includes("min")) {
-    blog.readTime = `${blog.readTime} mins`;
+    const readTimeNum = Number(blog.readTime) || 0;
+    blog.readTime = `${readTimeNum} min${readTimeNum === 1 ? "" : "s"}`;
   }
   blog.updateDate = blog.updateDate || getCurrentDay();
   const blogJson = JSON.stringify({ ...blog, id }, null, 2);
