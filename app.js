@@ -26,7 +26,9 @@ app.set("trust proxy", "loopback");
 
 app.use(cors());
 app.use(express.json());
-app.use(fileUpload());
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(fileUpload({ limits: { fileSize: 10 * 1024 * 1024 } }));
+
 
 // -------- Logger middleware
 import { loggerMiddleware, errorLoggerMiddleware } from "./helpers/logger.js";
