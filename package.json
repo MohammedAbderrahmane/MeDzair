@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node scripts/install-script.js",
+    "dev": "node scripts/dev-script.js",
     "start": "NODE_ENV=production node index.js",
     "start:admin": "NODE_ENV=production_admin node index.js",
     "test": "NODE_ENV=testing node --test",
